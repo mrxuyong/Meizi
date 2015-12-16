@@ -16,15 +16,14 @@ import android.view.View;
 import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.data.net.SparkRetrofit;
-import com.spark.meizi.ui.adapter.MeiziAdapter;
-import com.spark.meizi.ui.adapter.RealmMeiziAdapter;
+import com.spark.meizi.ui.adapter.MeiziRecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -37,9 +36,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     @Bind(R.id.srl_main)
     SwipeRefreshLayout swipeRefreshLayout;
     private Realm realm;
-    public RealmResults<Meizi> meizis;
-    private RealmMeiziAdapter realmMeiziAdapter;
-    private MeiziAdapter meiziAdapter;
+    private MeiziRecyclerAdapter meiziAdapter;
+    public List<Meizi> meizis;
     private static int page = 2;
     //we can't get RealmObject's data in a different thread
     private boolean isFirst = true;
@@ -57,7 +55,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                         .setAction("Action", null).show();
             }
         });
-
+        meizis = new ArrayList<>();
         initRealm();
         loadDataFromDB();
         initRecyclerView();
@@ -92,11 +90,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private void initRecyclerView() {
         final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        meiziAdapter = new MeiziRecyclerAdapter(getApplicationContext(), meizis);
         mainRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-        realmMeiziAdapter = new RealmMeiziAdapter(getApplicationContext(),meizis,true);
-        meiziAdapter = new MeiziAdapter(getApplicationContext());
         mainRecyclerView.setAdapter(meiziAdapter);
-        meiziAdapter.setRealmAdapter(realmMeiziAdapter);
         swipeRefreshLayout.setOnRefreshListener(this);
         mainRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -104,8 +100,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int[] maxPositions = staggeredGridLayoutManager.findLastVisibleItemPositions(null);
-                    int position = Math.max(maxPositions[0],maxPositions[1]);
-                    if ( position + 1 >= meiziAdapter.getItemCount()) {
+                    int position = Math.max(maxPositions[0], maxPositions[1]);
+                    if (position + 1 >= meiziAdapter.getItemCount()) {
                         loadDataFromServer(LoadImageAsyncTask.GET_MORE);
                     }
                 }
@@ -117,12 +113,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 //        RealmResults<Meizi> results = realm.where(Meizi.class)
 //                .findAllSorted("publishedAt", false);
 //        if (results.size() >= 10) {
-//            meiziList.addAll(results.subList(0, 10));
+//            meizis.addAll(results.subList(0, 10));
 //        } else {
-//            meiziList.addAll(results);
+//            meizis.addAll(results);
 //        }
-//        return results.size();
-
         meizis = realm.where(Meizi.class)
                 .findAllSorted("publishedAt", false);
         return meizis.size();
@@ -150,7 +144,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         // when lastInNetMzs is earlier than the first item in mzx, we think the mzs is too old
         // so return netMzs
         for (int i = 0; i < mzs.size(); i++) {
-            if (lastInNetMzs.getPublishedAt().equals(mzs.get(i).getPublishedAt()) && i != mzs.size()-1) { //in case two lists are same
+            if (lastInNetMzs.getPublishedAt().equals(mzs.get(i).getPublishedAt()) && i != mzs.size() - 1) { //in case two lists are same
                 netMzs.addAll(mzs.subList(i + 1, mzs.size() - 1));
             }
         }
@@ -163,19 +157,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
         @Override
         protected Integer doInBackground(Integer... params) {
-            SparkRetrofit sparkRetrofit = new SparkRetrofit();
+            SparkRetrofit sparkRetrofit = new SparkRetrofit(getApplicationContext());
             switch (params[0]) {
                 case GET_LATEST: {
                     List<Meizi> temp = sparkRetrofit.getLatest(1);
                     if (temp != null) {
                         if (isFirst) {
-                            meizis.clear();
-                            meizis.addAll(temp);
+                            meizis = temp;
                             isFirst = false;
                         } else {
-                            meizis.clear();
-                            meizis.addAll(temp);
-//                            meizis = mergeList(meizis, temp);
+                            meizis = mergeList(meizis, temp);
                         }
                         return GET_LATEST;
                     } else return -1;
@@ -200,7 +191,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
             }
-            Log.d(getClass().getName(),"notifyDataSetChanged invoked");
+            Log.d(getClass().getName(), "notifyDataSetChanged invoked");
             meiziAdapter.notifyDataSetChanged();
         }
     }

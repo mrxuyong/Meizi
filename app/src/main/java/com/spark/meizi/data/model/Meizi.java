@@ -19,6 +19,24 @@ public class Meizi extends RealmObject{
     private String desc;
     private String type;
     private boolean used;
+    private int width;
+    private int height;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 
     public String getWho() {
         return who;

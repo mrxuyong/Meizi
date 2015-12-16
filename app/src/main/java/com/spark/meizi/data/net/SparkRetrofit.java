@@ -1,5 +1,9 @@
 package com.spark.meizi.data.net;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+
+import com.bumptech.glide.Glide;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -11,6 +15,7 @@ import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import io.realm.RealmObject;
@@ -21,8 +26,9 @@ import retrofit.Retrofit;
  * Created by Spark on 12/13/2015.
  */
 public class SparkRetrofit {
-    public Retrofit retrofit;
+    private Retrofit retrofit;
     private GankApi gankApi;
+    private Context context;
     public static final int REQUEST_MEIZI_COUNT = 10;
 
     private final Gson gson = new GsonBuilder()
@@ -40,7 +46,8 @@ public class SparkRetrofit {
             })
             .create();
 
-    public SparkRetrofit() {
+    public SparkRetrofit(Context context) {
+        this.context = context;
         OkHttpClient client = new OkHttpClient();
         client.setReadTimeout(12, TimeUnit.SECONDS);
 
@@ -68,6 +75,22 @@ public class SparkRetrofit {
         if (result.error) {
             return null;
         } else {
+            Bitmap bitmap = null;
+            for (Meizi meizi : result.results) {
+                try {
+                    bitmap = Glide.with(context)
+                            .load(meizi.getUrl())
+                            .asBitmap()
+                            .into(-1, -1)
+                            .get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                meizi.setWidth(bitmap.getWidth());
+                meizi.setHeight(bitmap.getHeight());
+            }
             MeiziDAO.bulkInsert(result.results);
             return result.results;
         }

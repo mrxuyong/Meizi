@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 /**
  * Created by Spark on 12/10/2015.
+ * resize the pic as imposed by parent
  */
 public class RatioImageView extends ImageView {
 
@@ -35,7 +36,6 @@ public class RatioImageView extends ImageView {
         this.originalHeight = originalHeight;
     }
 
-        //TODO 用普通的Image试一下
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (originalWidth > 0 && originalHeight > 0) {

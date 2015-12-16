@@ -13,28 +13,50 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
 
+import java.util.List;
+
 /**
  * Created by Spark on 12/10/2015.
  */
-public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<Meizi> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MeiziViewHolder> {
 
     private Context context;
+    private List<Meizi> meiziList;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context, List<Meizi> meizis) {
         this.context = context;
+        meiziList = meizis;
     }
+//
+//    @Override
+//    public MeiziViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View v = LayoutInflater.
+//                from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
+//        return new MeiziViewHolder(v);
+//    }
+
+//    @Override
+//    public void onBindViewHolder(MeiziViewHolder holder, int position) {
+//        MeiziViewHolder holder = (MeiziViewHolder)viewHolder;
+//        Meizi meizi = getItem(position);
+//        holder.textView.setText(meizi.getDesc());
+//
+//        Glide.with(context)
+//                .load(meizi.getUrl())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(holder.imageView);
+//    }
 
     @Override
-    public MeiziViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.MeiziViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.
                 from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
         return new MeiziViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        MeiziViewHolder holder = (MeiziViewHolder)viewHolder;
-        Meizi meizi = getItem(position);
+    public void onBindViewHolder(MeiziViewHolder holder, int position) {
+        Meizi meizi = meiziList.get(position);
         holder.textView.setText(meizi.getDesc());
 
         Glide.with(context)
@@ -46,10 +68,7 @@ public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<Meizi> {
     @Override
     public int getItemCount() {
 
-        if (getRealmAdapter() != null) {
-            return getRealmAdapter().getCount();
-        }
-        return 0;
+        return meiziList.size();
     }
 
     class MeiziViewHolder extends RecyclerView.ViewHolder {
