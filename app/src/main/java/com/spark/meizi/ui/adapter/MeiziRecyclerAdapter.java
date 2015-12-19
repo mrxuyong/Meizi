@@ -22,6 +22,7 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
 
     private Context context;
     private List<Meizi> meiziList;
+    private OnMeiziClickListener onMeiziClickListener;
 
     public MeiziRecyclerAdapter(Context context, List<Meizi> meizis) {
         super();
@@ -37,16 +38,19 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(MeiziViewHolder holder, int position) {
+    public void onBindViewHolder(final MeiziViewHolder holder, int position) {
         Meizi meizi = meiziList.get(position);
+
         holder.textView.setText(meizi.getDesc());
 
         Glide.with(context)
                 .load(meizi.getUrl())
-                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imageView);
-        holder.imageView.setOriginalSize(meizi.getWidth(),meizi.getHeight());
+        if (meizi.getWidth() != 0 && meizi.getHeight() != 0) {
+            holder.imageView.setOriginalSize(meizi.getWidth(), meizi.getHeight());
+        }
+
     }
 
     @Override
@@ -63,6 +67,21 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
             super(itemView);
             imageView = (RatioImageView) itemView.findViewById(R.id.riv_item);
             textView = (TextView) itemView.findViewById(R.id.tv_item);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onMeiziClickListener.onMeiziClick(v, getAdapterPosition());
+                }
+            });
         }
+    }
+
+    public void setOnMeiziClickListener(OnMeiziClickListener listener) {
+        this.onMeiziClickListener = listener;
+    }
+
+    //Realm 与 RecyclerView.Adapter 目前存在Dataset不会自动更新的bug
+    public void setDataset(List<Meizi> list){
+        meiziList = list;
     }
 }

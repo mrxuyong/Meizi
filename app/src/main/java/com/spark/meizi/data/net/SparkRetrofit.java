@@ -8,7 +8,7 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.spark.meizi.api.GankApi;
+import com.spark.meizi.data.net.api.GankApi;
 import com.spark.meizi.data.dao.MeiziDAO;
 import com.spark.meizi.data.model.Meizi;
 import com.squareup.okhttp.OkHttpClient;
@@ -88,24 +88,16 @@ public class SparkRetrofit {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-                meizi.setWidth(bitmap.getWidth());
-                meizi.setHeight(bitmap.getHeight());
+                if (bitmap != null) {
+                    meizi.setWidth(bitmap.getWidth());
+                    meizi.setHeight(bitmap.getHeight());
+                }else {
+                    meizi.setWidth(0);
+                    meizi.setHeight(0);
+                }
+                MeiziDAO.bulkInsert(result.results);
             }
-            MeiziDAO.bulkInsert(result.results);
             return result.results;
         }
-    }
-
-    public List<Meizi> getMore() {
-        GankApi.Result<List<Meizi>> result = null;
-        String[] date;
-        date = MeiziDAO.getLatestPicDate();
-        try {
-            result = gankApi.before(REQUEST_MEIZI_COUNT, date[0], date[1], date[2]).execute().body();
-            MeiziDAO.bulkInsert(result.results);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result.results;
     }
 }

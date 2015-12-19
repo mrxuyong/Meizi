@@ -1,4 +1,4 @@
-package com.spark.meizi.api;
+package com.spark.meizi.data.net.api;
 
 import com.spark.meizi.data.model.Meizi;
 

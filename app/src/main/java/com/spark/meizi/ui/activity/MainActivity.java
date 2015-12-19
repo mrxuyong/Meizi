@@ -1,14 +1,15 @@
 package com.spark.meizi.ui.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.data.net.SparkRetrofit;
 import com.spark.meizi.ui.adapter.MeiziRecyclerAdapter;
+import com.spark.meizi.ui.adapter.OnMeiziClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 
-public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity
+        implements SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -91,6 +94,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private void initRecyclerView() {
         final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         meiziAdapter = new MeiziRecyclerAdapter(getApplicationContext(), meizis);
+        meiziAdapter.setOnMeiziClickListener(this);
         mainRecyclerView.setLayoutManager(staggeredGridLayoutManager);
         mainRecyclerView.setAdapter(meiziAdapter);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -130,7 +134,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
-//        isFirst = true;
     }
 
     @Override
@@ -149,6 +152,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             }
         }
         return netMzs;
+    }
+
+    @Override
+    public void onMeiziClick(View itemView, int position) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        Meizi meizi = meizis.get(position);
+        intent.putExtra("url", meizi.getUrl());
+        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, itemView, meizi.getUrl());
+        startActivity(intent, optionsCompat.toBundle());
     }
 
     class LoadImageAsyncTask extends AsyncTask<Integer, Void, Integer> {
@@ -176,7 +189,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                     if (temp != null) {
                         meizis.addAll(temp);
                         page++;
-                        Log.d(getClass().getName() + "page++", String.valueOf(page));
                         return GET_MORE;
                     } else return -1;
                 }
@@ -187,12 +199,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
         @Override
         protected void onPostExecute(Integer result) {
-//            super.onPostExecute(result);
+            super.onPostExecute(result);
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
             }
-            Log.d(getClass().getName(), "notifyDataSetChanged invoked");
             meiziAdapter.notifyDataSetChanged();
+            meiziAdapter.setDataset(meizis);
         }
     }
 }
