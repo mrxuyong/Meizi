@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.ui.widget.RatioImageView;
@@ -45,7 +44,6 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
 
         Glide.with(context)
                 .load(meizi.getUrl())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imageView);
         if (meizi.getWidth() != 0 && meizi.getHeight() != 0) {
             holder.imageView.setOriginalSize(meizi.getWidth(), meizi.getHeight());
@@ -78,10 +76,5 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
 
     public void setOnMeiziClickListener(OnMeiziClickListener listener) {
         this.onMeiziClickListener = listener;
-    }
-
-    //Realm 与 RecyclerView.Adapter 目前存在Dataset不会自动更新的bug
-    public void setDataset(List<Meizi> list){
-        meiziList = list;
     }
 }

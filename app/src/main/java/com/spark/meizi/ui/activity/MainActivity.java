@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
@@ -22,10 +25,12 @@ import com.spark.meizi.ui.adapter.OnMeiziClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends BaseActivity
         implements SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
@@ -44,13 +49,15 @@ public class MainActivity extends BaseActivity
     private static int page = 2;
     //we can't get RealmObject's data in a different thread
     private boolean isFirst = true;
+    private Bundle reenterState;
+    private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+        initToolbar();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +70,20 @@ public class MainActivity extends BaseActivity
         loadDataFromDB();
         initRecyclerView();
         loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
+
+        setExitSharedElementCallback(new SharedElementCallback() {
+            @Override
+            public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
+                if (reenterState != null) {
+                    int i = reenterState.getInt("index", 0);
+                    Log.d(getClass().getName(), "reenter from " + i);
+
+                    sharedElements.clear();
+                    sharedElements.put(meizis.get(i).getUrl(), staggeredGridLayoutManager.findViewByPosition(i));
+                    reenterState = null;
+                }
+            }
+        });
     }
 
     @Override
@@ -91,8 +112,18 @@ public class MainActivity extends BaseActivity
         realm = Realm.getDefaultInstance();
     }
 
+    private void initToolbar(){
+        setSupportActionBar(toolbar);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainRecyclerView.smoothScrollToPosition(0);
+            }
+        });
+    }
+
     private void initRecyclerView() {
-        final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         meiziAdapter = new MeiziRecyclerAdapter(getApplicationContext(), meizis);
         meiziAdapter.setOnMeiziClickListener(this);
         mainRecyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -114,15 +145,10 @@ public class MainActivity extends BaseActivity
     }
 
     private int loadDataFromDB() {
-//        RealmResults<Meizi> results = realm.where(Meizi.class)
-//                .findAllSorted("publishedAt", false);
-//        if (results.size() >= 10) {
-//            meizis.addAll(results.subList(0, 10));
-//        } else {
-//            meizis.addAll(results);
-//        }
-        meizis = realm.where(Meizi.class)
+        RealmResults<Meizi> results = realm.where(Meizi.class)
                 .findAllSorted("publishedAt", false);
+        meizis.clear();
+        meizis.addAll(results);
         return meizis.size();
     }
 
@@ -157,11 +183,32 @@ public class MainActivity extends BaseActivity
     @Override
     public void onMeiziClick(View itemView, int position) {
         Intent intent = new Intent(this, DetailActivity.class);
-        Meizi meizi = meizis.get(position);
-        intent.putExtra("url", meizi.getUrl());
+        ArrayList<String> meiziUrls = new ArrayList<>();
+        for(Meizi meizi : meizis){
+            meiziUrls.add(meizi.getUrl());
+        }
+        intent.putStringArrayListExtra("meiziUrls", meiziUrls);
+        intent.putExtra("index",position);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(this, itemView, meizi.getUrl());
+                .makeSceneTransitionAnimation(this, itemView, meiziUrls.get(position));
         startActivity(intent, optionsCompat.toBundle());
+    }
+
+    @Override
+    public void onActivityReenter(int resultCode, Intent data) {
+        super.onActivityReenter(resultCode, data);
+        reenterState = data.getExtras();
+        int index = reenterState.getInt("index", 0);
+        Log.d(getClass().getName(),"index "+index);
+        mainRecyclerView.smoothScrollToPosition(index);
+        mainRecyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mainRecyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
+                supportStartPostponedEnterTransition();
+                return true;
+            }
+        });
     }
 
     class LoadImageAsyncTask extends AsyncTask<Integer, Void, Integer> {
@@ -176,10 +223,11 @@ public class MainActivity extends BaseActivity
                     List<Meizi> temp = sparkRetrofit.getLatest(1);
                     if (temp != null) {
                         if (isFirst) {
-                            meizis = temp;
+                            meizis.clear();
+                            meizis.addAll(temp);
                             isFirst = false;
                         } else {
-                            meizis = mergeList(meizis, temp);
+                            mergeList(meizis, temp);
                         }
                         return GET_LATEST;
                     } else return -1;
@@ -199,12 +247,10 @@ public class MainActivity extends BaseActivity
 
         @Override
         protected void onPostExecute(Integer result) {
-            super.onPostExecute(result);
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
             }
             meiziAdapter.notifyDataSetChanged();
-            meiziAdapter.setDataset(meizis);
         }
     }
 }

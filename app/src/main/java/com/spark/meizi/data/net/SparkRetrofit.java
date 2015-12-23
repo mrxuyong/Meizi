@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -81,6 +82,7 @@ public class SparkRetrofit {
                     bitmap = Glide.with(context)
                             .load(meizi.getUrl())
                             .asBitmap()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(-1, -1)
                             .get();
                 } catch (InterruptedException e) {
