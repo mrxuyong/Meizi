@@ -1,10 +1,9 @@
 # Meizi
-##自己写的一个练手小项目，每天更新一张精选妹纸图片
-##第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
+自己写的一个练手小项目，每天更新一张精选妹纸图片
+第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
 
 ![示例](http://7xq9wk.com1.z0.glb.clouddn.com/meizi.gif)
 
-——————————————————————————————————————
 ##用到的开源项目
 
 > com.android.support:appcompat-v7:23.1.1
@@ -17,4 +16,4 @@
 > com.android.support:support-v4:23.1.1
 
 ##数据来源
-##[http://gank.io](http://gank.io) 
+[http://gank.io](http://gank.io) 
