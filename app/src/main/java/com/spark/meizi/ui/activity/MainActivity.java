@@ -3,15 +3,12 @@ package com.spark.meizi.ui.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,8 +36,6 @@ public class MainActivity extends BaseActivity
     Toolbar toolbar;
     @Bind(R.id.rv_main)
     RecyclerView mainRecyclerView;
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
     @Bind(R.id.srl_main)
     SwipeRefreshLayout swipeRefreshLayout;
     private Realm realm;
@@ -58,32 +53,23 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initToolbar();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         meizis = new ArrayList<>();
         initRealm();
         loadDataFromDB();
         initRecyclerView();
-        loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
-
         setExitSharedElementCallback(new SharedElementCallback() {
             @Override
             public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
                 if (reenterState != null) {
                     int i = reenterState.getInt("index", 0);
-                    Log.d(getClass().getName(), "reenter from " + i);
-
+                    log("reenter from " + i);
                     sharedElements.clear();
                     sharedElements.put(meizis.get(i).getUrl(), staggeredGridLayoutManager.findViewByPosition(i));
                     reenterState = null;
                 }
             }
         });
+        loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
     }
 
     @Override
@@ -101,7 +87,8 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            startActivity(new Intent(this,AboutActivity.class));
             return true;
         }
 
@@ -153,6 +140,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void loadDataFromServer(int i) {
+        swipeRefreshLayout.setRefreshing(true);
         new LoadImageAsyncTask().execute(i);
     }
 
@@ -199,7 +187,6 @@ public class MainActivity extends BaseActivity
         super.onActivityReenter(resultCode, data);
         reenterState = data.getExtras();
         int index = reenterState.getInt("index", 0);
-        Log.d(getClass().getName(),"index "+index);
         mainRecyclerView.smoothScrollToPosition(index);
         mainRecyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
