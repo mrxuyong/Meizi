@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">每日一妹子</string>
     <string name="action_settings">关于</string>
+    <string name="version">V 1.0</string>
+    <string name="introduction">每天更新一张精选妹纸图片</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_about">关于</string>
+    <string name="introduction_detail">每天更新一张精选妹纸图片,使用的是代码家的API http://gank.io \n此项目开源，源码请戳下面的链接\nhttps://github.com/SparkYuan/Meizi \n本项目会持续更新，遇到任何问题欢迎与作者联系 ^_^</string>
 </resources>

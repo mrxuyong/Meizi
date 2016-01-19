@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.spark.meizi.R;
 import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.ui.widget.RatioImageView;
@@ -40,10 +40,9 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
     public void onBindViewHolder(final MeiziViewHolder holder, int position) {
         Meizi meizi = meiziList.get(position);
 
-        holder.textView.setText(meizi.getDesc());
-
         Glide.with(context)
                 .load(meizi.getUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imageView);
         if (meizi.getWidth() != 0 && meizi.getHeight() != 0) {
             holder.imageView.setOriginalSize(meizi.getWidth(), meizi.getHeight());
@@ -59,12 +58,10 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
     class MeiziViewHolder extends RecyclerView.ViewHolder {
 
         public RatioImageView imageView;
-        public TextView textView;
 
         public MeiziViewHolder(View itemView) {
             super(itemView);
             imageView = (RatioImageView) itemView.findViewById(R.id.riv_item);
-            textView = (TextView) itemView.findViewById(R.id.tv_item);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

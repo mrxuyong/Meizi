@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.SharedElementCallback;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
 import com.spark.meizi.R;
 import com.spark.meizi.ui.fragment.DetailFragment;
-import com.spark.meizi.ui.widget.PhotoViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 public class DetailActivity extends BaseActivity {
 
     @Bind(R.id.pager)
-    PhotoViewPager pager;
+    ViewPager pager;
     private ArrayList<String> meiziUrls;
     private int index;
     private DetailPagerAdapter detailPagerAdapter;
@@ -38,17 +38,16 @@ public class DetailActivity extends BaseActivity {
 
         meiziUrls = getIntent().getStringArrayListExtra("meiziUrls");
         index = getIntent().getIntExtra("index", 0);
-        Log.d(getClass().getName(), "index url " + index + ": " + meiziUrls.get(index));
+        log("index url " + index + ": " + meiziUrls.get(index));
         detailPagerAdapter = new DetailPagerAdapter();
         pager.setAdapter(detailPagerAdapter);
         pager.setCurrentItem(index);
         setEnterSharedElementCallback(new SharedElementCallback() {
             @Override
             public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-                DetailFragment fragment = (DetailFragment) detailPagerAdapter.instantiateItem(pager, pager.getCurrentItem());
                 sharedElements.clear();
-                Log.d(getClass().getName(),"SharedElements width "+fragment.getImage().getWidth());
-                sharedElements.put(meiziUrls.get(pager.getCurrentItem()), fragment.getImage());
+                sharedElements.put(meiziUrls.get(pager.getCurrentItem()),
+                        detailPagerAdapter.getCurrent().getSharedElement());
             }
         });
     }
@@ -69,7 +68,6 @@ public class DetailActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.d(getClass().getName(), "getItem position " + position);
             return DetailFragment.newInstance(meiziUrls.get(position));
         }
 
@@ -77,6 +75,11 @@ public class DetailActivity extends BaseActivity {
         public int getCount() {
             return meiziUrls.size();
         }
+
+        public DetailFragment getCurrent() {
+            return (DetailFragment)detailPagerAdapter.instantiateItem(pager, pager.getCurrentItem());
+        }
+
     }
 
 
