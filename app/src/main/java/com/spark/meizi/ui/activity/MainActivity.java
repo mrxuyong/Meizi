@@ -57,6 +57,8 @@ public class MainActivity extends BaseActivity
         initRealm();
         loadDataFromDB();
         initRecyclerView();
+        loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
+
         setExitSharedElementCallback(new SharedElementCallback() {
             @Override
             public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
@@ -69,7 +71,6 @@ public class MainActivity extends BaseActivity
                 }
             }
         });
-        loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
     }
 
     @Override
@@ -140,7 +141,12 @@ public class MainActivity extends BaseActivity
     }
 
     private void loadDataFromServer(int i) {
-        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
         new LoadImageAsyncTask().execute(i);
     }
 
