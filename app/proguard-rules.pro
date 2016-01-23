@@ -16,6 +16,26 @@
 #   public *;
 #}
 
+# Keep the support library
+-keep class android.support.** { *; }
+-keep interface android.support.** { *; }
+
+#Butterknife
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+
+# Okio
+-dontwarn okio.**
+
 # Realm
 -keep class io.realm.annotations.RealmModule
 -keep @io.realm.annotations.RealmModule class *
@@ -27,5 +47,25 @@
 #Retrofit
 -dontwarn retrofit.**
 -keep class retrofit.** { *; }
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**
+
+#Umeng
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+-keep public class com.spark.meizi.R$*{
+public static final int *;
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+

@@ -33,6 +33,9 @@
             android:name=".ui.activity.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data android:value="56a0e38867e58ef0f0001dec" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>

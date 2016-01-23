@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity
     private boolean isFirst = true;
     private Bundle reenterState;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
+    SparkRetrofit sparkRetrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MainActivity extends BaseActivity
         ButterKnife.bind(this);
         initToolbar();
         meizis = new ArrayList<>();
+        sparkRetrofit = new SparkRetrofit(getApplicationContext());
         initRealm();
         loadDataFromDB();
         initRecyclerView();
@@ -207,13 +209,16 @@ public class MainActivity extends BaseActivity
     class LoadImageAsyncTask extends AsyncTask<Integer, Void, Integer> {
         public static final int GET_LATEST = 1;
         public static final int GET_MORE = 2;
+        public static final int FIR_PAGE = 2;
 
         @Override
         protected Integer doInBackground(Integer... params) {
-            SparkRetrofit sparkRetrofit = new SparkRetrofit(getApplicationContext());
+
             switch (params[0]) {
                 case GET_LATEST: {
-                    List<Meizi> temp = sparkRetrofit.getLatest(1);
+                    loge("Before temp");
+                    List<Meizi> temp = sparkRetrofit.getLatest(FIR_PAGE);
+                    loge("After temp");
                     if (temp != null) {
                         if (isFirst) {
                             meizis.clear();
