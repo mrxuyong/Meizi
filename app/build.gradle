@@ -13,10 +13,7 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'Meizi'
-            keyPassword 'kiNdle0574%%%'
-            storeFile file('F:/ComputerScience/AndroidStudio/Projects/GitHub/Meizi/SparkYuan.jks')
-            storePassword 'kiNdle0574%%%'
+
         }
     }
 
