@@ -19,6 +19,7 @@ import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.data.net.SparkRetrofit;
 import com.spark.meizi.ui.adapter.MeiziRecyclerAdapter;
 import com.spark.meizi.ui.adapter.OnMeiziClickListener;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,26 +33,28 @@ import io.realm.RealmResults;
 public class MainActivity extends BaseActivity
         implements SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
 
+    private static int page = 2;
+    public List<Meizi> meizis;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.rv_main)
     RecyclerView mainRecyclerView;
     @Bind(R.id.srl_main)
     SwipeRefreshLayout swipeRefreshLayout;
+    SparkRetrofit sparkRetrofit;
     private Realm realm;
     private MeiziRecyclerAdapter meiziAdapter;
-    public List<Meizi> meizis;
-    private static int page = 2;
     //we can't get RealmObject's data in a different thread
     private boolean isFirst = true;
     private Bundle reenterState;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
-    SparkRetrofit sparkRetrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(this);
         ButterKnife.bind(this);
         initToolbar();
         meizis = new ArrayList<>();
@@ -91,7 +94,7 @@ public class MainActivity extends BaseActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            startActivity(new Intent(this,AboutActivity.class));
+            startActivity(new Intent(this, AboutActivity.class));
             return true;
         }
 
@@ -102,7 +105,7 @@ public class MainActivity extends BaseActivity
         realm = Realm.getDefaultInstance();
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,11 +183,11 @@ public class MainActivity extends BaseActivity
     public void onMeiziClick(View itemView, int position) {
         Intent intent = new Intent(this, DetailActivity.class);
         ArrayList<String> meiziUrls = new ArrayList<>();
-        for(Meizi meizi : meizis){
+        for (Meizi meizi : meizis) {
             meiziUrls.add(meizi.getUrl());
         }
         intent.putStringArrayListExtra("meiziUrls", meiziUrls);
-        intent.putExtra("index",position);
+        intent.putExtra("index", position);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(this, itemView, meiziUrls.get(position));
         startActivity(intent, optionsCompat.toBundle());
@@ -209,7 +212,7 @@ public class MainActivity extends BaseActivity
     class LoadImageAsyncTask extends AsyncTask<Integer, Void, Integer> {
         public static final int GET_LATEST = 1;
         public static final int GET_MORE = 2;
-        public static final int FIR_PAGE = 2;
+        public static final int FIR_PAGE = 1;
 
         @Override
         protected Integer doInBackground(Integer... params) {

@@ -13,12 +13,15 @@ android {
     }
     signingConfigs {
         release {
+            keyAlias 'Meizi'
+            keyPassword 'kiNdle0574%%%'
+            storeFile file('F:/ComputerScience/AndroidStudio/Projects/GitHub/Meizi/SparkYuan.jks')
+            storePassword 'kiNdle0574%%%'
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             debuggable false

@@ -19,6 +19,9 @@
 # Keep the support library
 -keep class android.support.** { *; }
 -keep interface android.support.** { *; }
+-keep class * extends android.support.design.widget.CoordinatorLayout$Behavior {
+    *;
+}
 
 #Butterknife
 -keep class butterknife.** { *; }
@@ -69,3 +72,10 @@ public static final int *;
     public static ** valueOf(java.lang.String);
 }
 
+
+# Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+    **[] $VALUES;
+    public *;
+}
