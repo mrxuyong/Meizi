@@ -3,8 +3,6 @@
 第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
 ##部分示例
 
-![首页](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/1.jpeg)
-
 ![示例](https://github.com/SparkYuan/Meizi/raw/master/pic/meizi.gif)
 
 ##用到的开源技术
