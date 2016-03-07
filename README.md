@@ -19,8 +19,7 @@
 - 自定义了一个ImageView
 - 使用了流行的Realm，Retrofit，Glide，Butterknife等开源项目，方便新手学习他们的使用
 - 遵循Material Design规则
-
-  ......
+- ......
  
 
 ##用到的开源技术
@@ -28,8 +27,7 @@
 - Realm
 - Retrofit
 - Glide
-
-  ......
+- ......
 
 ##数据来源
 [http://gank.io](http://gank.io) 
