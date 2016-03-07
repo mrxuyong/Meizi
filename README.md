@@ -15,8 +15,11 @@
 - 服务器API接口功能丰富且无访问次数限制
 - 包含了常见的网络通信，数据缓存等功能
 - 包含了常见的Gradle用法
+- 多语言适配
+- 自定义了一个ImageView
 - 使用了流行的Realm，Retrofit，Glide，Butterknife等开源项目，方便新手学习他们的使用
 - 遵循Material Design规则
+  ......
  
 
 ##用到的开源技术
@@ -24,6 +27,7 @@
 - Realm
 - Retrofit
 - Glide
+  ......
 
 ##数据来源
 [http://gank.io](http://gank.io) 
