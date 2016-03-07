@@ -1,9 +1,23 @@
 # Meizi
+当前版本V 1.2
+
+一个特别适合新手练习的Android小项目——每日一妹纸
+
 每天更新一张[@代码家](https://github.com/daimajia)精选妹纸图片
 第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
 ##部分示例
 
 ![示例](https://github.com/SparkYuan/Meizi/raw/master/pic/meizi.gif)
+
+
+##为什么说这是一个特别适合新手练习的小项目？
+
+- 服务器API接口功能丰富且无访问次数限制
+- 包含了常见的网络通信，数据缓存等功能
+- 包含了常见的Gradle用法
+- 使用了流行的Realm，Retrofit，Glide，Butterknife等开源项目，方便新手学习他们的使用
+- 遵循Material Design规则
+ 
 
 ##用到的开源技术
 - Butterknife
