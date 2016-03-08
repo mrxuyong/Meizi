@@ -1,6 +1,8 @@
 # Meizi
 当前版本V 1.2
 
+刚开始学习Android的时候，主要就是学习了一些Activity的生命周期，各种View和Layout的使用，SQLite等零散的知识点，这些东西市面上任何一本Android的入门书籍都会覆盖，但是学习完这些之后就有些迷茫了，不知道下一步该学一些什么？自己走过一些弯路，所以写了一个这样的App，希望可以对学习Android的新手有些帮助。
+
 一个特别适合新手练习的Android小项目——每日一妹纸
 
 每天更新一张[@代码家](https://github.com/daimajia)精选妹纸图片
