@@ -5,11 +5,21 @@
 
 一个特别适合新手练习的Android小项目——每日一妹纸
 
-每天更新一张[@代码家](https://github.com/daimajia)精选妹纸图片
+每天更新一张[@代码家](https://github.com/daimajia)精选妹纸图片，所以叫每日一妹纸，咳咳，不要污，这是一个很绅士的项目（一脸绅士(๑•̀ㅂ•́) ✧）
+
 第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
 ##部分示例
 
 ![示例](https://github.com/SparkYuan/Meizi/raw/master/pic/meizi.gif)
+
+![首页](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/Screenshot_2016-03-08-10-37-45.png)
+
+![1](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/Screenshot_2016-03-08-10-37-48.png)
+
+![2](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/Screenshot_2016-03-08-10-41-20.png)
+
+![3](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/Screenshot_2016-03-08-10-36-44.png)
+
 
 
 ##为什么说这是一个特别适合新手练习的小项目？
