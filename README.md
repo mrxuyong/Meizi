@@ -47,7 +47,9 @@
 [http://gank.io](http://gank.io) 
 
 ##联系方式
- [博客](http://blog.csdn.net/l664675249)
+ 博客：
+ - Hexo：[http://sparkyuan.me/](http://sparkyuan.me/)
+ - CSDN：[http://blog.csdn.net/l664675249](http://blog.csdn.net/l664675249)
 
 
 邮箱：[daniellee0929@gmail.com](daniellee0929@gmail.com)
