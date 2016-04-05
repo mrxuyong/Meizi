@@ -10,7 +10,7 @@ import io.realm.annotations.PrimaryKey;
  */
 public class Meizi extends RealmObject{
     @PrimaryKey
-    private String objectId;
+    private String _id;
     private String url;
     private Date publishedAt;
     private Date createdAt;
@@ -21,6 +21,14 @@ public class Meizi extends RealmObject{
     private boolean used;
     private int width;
     private int height;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public int getWidth() {
         return width;
@@ -94,14 +102,6 @@ public class Meizi extends RealmObject{
         this.desc = desc;
     }
 
-    public String getObjectId() {
-        return objectId;
-    }
-
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -110,15 +110,4 @@ public class Meizi extends RealmObject{
         this.url = url;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-////        return super.equals(o);
-//        Meizi objet = (Meizi)o;
-//
-//        if(this.getObjectId().equals(objet.getObjectId())){
-//            return true;
-//        }else {
-//            return false;
-//        }
-//    }
 }

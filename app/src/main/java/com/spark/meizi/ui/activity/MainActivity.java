@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity
     SparkRetrofit sparkRetrofit;
     private Realm realm;
     private MeiziRecyclerAdapter meiziAdapter;
-    //we can't get RealmObject's data in a different thread
+    //You can't get RealmObject's data in a different thread
     private boolean isFirst = true;
     private Bundle reenterState;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;

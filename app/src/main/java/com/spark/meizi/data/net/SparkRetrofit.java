@@ -2,16 +2,18 @@ package com.spark.meizi.data.net;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.spark.meizi.data.net.api.GankApi;
 import com.spark.meizi.data.dao.MeiziDAO;
 import com.spark.meizi.data.model.Meizi;
+import com.spark.meizi.data.net.api.GankApi;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
@@ -27,6 +29,7 @@ import retrofit.Retrofit;
  * Created by Spark on 12/13/2015.
  */
 public class SparkRetrofit {
+    private static final String TAG = "SparkRetrofit";
     private Retrofit retrofit;
     private GankApi gankApi;
     private Context context;
@@ -53,7 +56,7 @@ public class SparkRetrofit {
         client.setReadTimeout(12, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://gank.avosapps.com/api/")
+                .baseUrl("http://gank.io/api/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -82,8 +85,8 @@ public class SparkRetrofit {
                     bitmap = Glide.with(context)
                             .load(meizi.getUrl())
                             .asBitmap()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(-1, -1)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                             .get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -91,14 +94,16 @@ public class SparkRetrofit {
                     e.printStackTrace();
                 }
                 if (bitmap != null) {
+                    Log.d(TAG, "getLatest: bitmap.getWidth()");
+
                     meizi.setWidth(bitmap.getWidth());
                     meizi.setHeight(bitmap.getHeight());
                 }else {
                     meizi.setWidth(0);
                     meizi.setHeight(0);
                 }
-                MeiziDAO.bulkInsert(result.results);
             }
+            MeiziDAO.bulkInsert(result.results);
             return result.results;
         }
     }
