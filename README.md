@@ -1,6 +1,8 @@
 # Meizi
 V 1.4
+
 添加了Android技术博文
+
 修复部分bug
 
 ![home](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/home.png)
@@ -10,7 +12,9 @@ V 1.4
 ![blog](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog.png)
 
 V 1.3
+
 更新dependencies
+
 修复部分bug
 
 V 1.2
