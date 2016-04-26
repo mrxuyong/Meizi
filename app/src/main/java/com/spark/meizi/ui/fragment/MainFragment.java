@@ -50,8 +50,7 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     }
 
     public static MainFragment newInstance() {
-        MainFragment fragment = new MainFragment();
-        return fragment;
+        return new MainFragment();
     }
 
     @Override
@@ -161,26 +160,28 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         public static final int GET_LATEST = 1;
         public static final int GET_MORE = 2;
         public static final int FIR_PAGE = 1;
+        private boolean needMerge = false;
+        private List<Meizi> temp;
 
         @Override
         protected Integer doInBackground(Integer... params) {
 
             switch (params[0]) {
                 case GET_LATEST: {
-                    List<Meizi> temp = sparkRetrofit.getLatest(FIR_PAGE);
+                    temp = sparkRetrofit.getLatest(FIR_PAGE);
                     if (temp != null) {
                         if (isFirst) {
                             meizis.clear();
                             meizis.addAll(temp);
                             isFirst = false;
                         } else {
-                            mergeList(meizis, temp);
+                            needMerge = true;
                         }
                         return GET_LATEST;
                     } else return -1;
                 }
                 case GET_MORE: {
-                    List<Meizi> temp = sparkRetrofit.getLatest(page);
+                    temp = sparkRetrofit.getLatest(page);
                     if (temp != null) {
                         meizis.addAll(temp);
                         page++;
@@ -194,6 +195,10 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
         @Override
         protected void onPostExecute(Integer result) {
+            if(needMerge){
+                mergeList(meizis, temp);
+                needMerge = false;
+            }
             if (swipeRefreshLayout.isRefreshing()) {
                 swipeRefreshLayout.setRefreshing(false);
             }

@@ -19,7 +19,6 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_main"
             android:layout_width="match_parent"

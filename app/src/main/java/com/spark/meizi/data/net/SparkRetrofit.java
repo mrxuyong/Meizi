@@ -2,7 +2,7 @@ package com.spark.meizi.data.net;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.graphics.BitmapFactory;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -11,7 +11,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.spark.meizi.R;
+import com.spark.meizi.data.dao.AndroidBlogDAO;
 import com.spark.meizi.data.dao.MeiziDAO;
+import com.spark.meizi.data.model.AndroidBlog;
 import com.spark.meizi.data.model.Meizi;
 import com.spark.meizi.data.net.api.GankApi;
 import com.squareup.okhttp.OkHttpClient;
@@ -34,6 +37,7 @@ public class SparkRetrofit {
     private GankApi gankApi;
     private Context context;
     public static final int REQUEST_MEIZI_COUNT = 10;
+    public static final int REQUEST_BLOG_COUNT = 10;
 
     private final Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -79,7 +83,7 @@ public class SparkRetrofit {
         if (result.error) {
             return null;
         } else {
-            Bitmap bitmap = null;
+            Bitmap bitmap;
             for (Meizi meizi : result.results) {
                 try {
                     bitmap = Glide.with(context)
@@ -88,22 +92,38 @@ public class SparkRetrofit {
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                             .get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (InterruptedException | ExecutionException e) {
+                    bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
                     e.printStackTrace();
                 }
                 if (bitmap != null) {
-                    Log.d(TAG, "getLatest: bitmap.getWidth()");
-
                     meizi.setWidth(bitmap.getWidth());
                     meizi.setHeight(bitmap.getHeight());
-                }else {
+                } else {
                     meizi.setWidth(0);
                     meizi.setHeight(0);
                 }
             }
             MeiziDAO.bulkInsert(result.results);
+            return result.results;
+        }
+    }
+
+    public List<AndroidBlog> getLatestAndroid(int page) {
+        GankApi.Result<List<AndroidBlog>> result = null;
+        try {
+            result = gankApi.getAndroid(REQUEST_BLOG_COUNT, page).execute().body();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (result == null || result.results.size() == 0) {
+            return null;
+        }
+        if (result.error) {
+            return null;
+        } else {
+            AndroidBlogDAO.bulkInsert(result.results);
             return result.results;
         }
     }

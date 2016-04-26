@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.spark.meizi.R;
+import com.spark.meizi.ui.fragment.AndroidBlogFragment;
 import com.spark.meizi.ui.fragment.MainFragment;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -20,12 +21,11 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    public static int NUM_PAGES = 3;
+    public static int NUM_PAGES = 2;
     @Bind(R.id.vp_main)
     ViewPager viewPager;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
         UmengUpdateAgent.update(this);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        pagerAdapter = new MainSlidePagerAdapter(getSupportFragmentManager());
+        PagerAdapter pagerAdapter = new MainSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
     }
 
@@ -74,7 +74,11 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return MainFragment.newInstance();
+            switch (position){
+                case 0: return MainFragment.newInstance();
+                case 1: return AndroidBlogFragment.newInstance();
+                default: return MainFragment.newInstance();
+            }
         }
 
         @Override
@@ -89,10 +93,9 @@ public class MainActivity extends BaseActivity {
                     return getString(R.string.meizi);
                 case 1:
                     return getString(R.string.Android);
-                case 2:
+                default:
                     return getString(R.string.iOS);
             }
-            return super.getPageTitle(position);
         }
     }
 }
