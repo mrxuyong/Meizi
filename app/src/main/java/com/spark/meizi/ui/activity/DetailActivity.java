@@ -24,7 +24,6 @@ public class DetailActivity extends BaseActivity {
     @Bind(R.id.pager)
     ViewPager pager;
     private ArrayList<String> meiziUrls;
-    private int index;
     private DetailPagerAdapter detailPagerAdapter;
 
 
@@ -37,7 +36,7 @@ public class DetailActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         meiziUrls = getIntent().getStringArrayListExtra("meiziUrls");
-        index = getIntent().getIntExtra("index", 0);
+        int index = getIntent().getIntExtra("index", 0);
         log("index url " + index + ": " + meiziUrls.get(index));
         detailPagerAdapter = new DetailPagerAdapter();
         pager.setAdapter(detailPagerAdapter);
