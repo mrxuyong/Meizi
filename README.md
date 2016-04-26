@@ -3,9 +3,11 @@ V 1.4
 添加了Android技术博文
 修复部分bug
 
-![home](https://raw.githubusercontent.com/SparkYuan/Meizi/master/home.png)
+![home](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/home.png)
+
 ![blog_list](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog_list.png)
-![blog](https://raw.githubusercontent.com/SparkYuan/Meizi/master/blog.png)
+
+![blog](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog.png)
 
 V 1.3
 更新dependencies
