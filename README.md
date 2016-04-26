@@ -1,5 +1,17 @@
 # Meizi
-当前版本V 1.2
+V 1.4
+添加了Android技术博文
+修复部分bug
+
+![home](https://raw.githubusercontent.com/SparkYuan/Meizi/master/home.png)
+![blog_list](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog_list.png)
+![blog](https://raw.githubusercontent.com/SparkYuan/Meizi/master/blog.png)
+
+V 1.3
+更新dependencies
+修复部分bug
+
+V 1.2
 
 刚开始学习Android的时候，主要就是学习了一些Activity的生命周期，各种View和Layout的使用，SQLite等零散的知识点，这些东西市面上任何一本Android的入门书籍都会覆盖，但是学习完这些之后就有些迷茫了，不知道下一步该学一些什么？如果你也正好处于这个状态不妨看看这个开源项目。
 

@@ -1,5 +1,6 @@
 package com.spark.meizi.data.net.api;
 
+import com.spark.meizi.data.model.AndroidBlog;
 import com.spark.meizi.data.model.Meizi;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface GankApi {
                                      @Path("year") String year,
                                      @Path("month") String month,
                                      @Path("day") String day);
+
+    @GET("data/Android/{count}/{page}")
+    Call<Result<List<AndroidBlog>>> getAndroid(@Path("count") int count, @Path("page") int page);
 
     class Result<T> {
         public boolean error;

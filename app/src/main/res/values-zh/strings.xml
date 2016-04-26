@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">每日一妹子</string>
     <string name="action_settings">关于</string>
-    <string name="version">V 1.2</string>
+    <string name="version">V 1.4</string>
     <string name="introduction">每天更新一张精选妹纸图片</string>
 
     <string name="title_activity_about">关于</string>

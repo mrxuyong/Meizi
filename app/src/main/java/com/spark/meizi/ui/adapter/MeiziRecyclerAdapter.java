@@ -32,7 +32,8 @@ public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdap
     @Override
     public MeiziViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.
-                from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
+                from(parent.getContext()).inflate(R.layout.rv_item, parent,
+                false);
         return new MeiziViewHolder(v);
     }
 

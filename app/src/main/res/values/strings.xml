@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">One Girl One Day</string>
     <string name="action_settings">About</string>
-    <string name="version">V 1.2</string>
+    <string name="version">V 1.4</string>
     <string name="introduction">每天更新一张精选妹纸图片</string>
 
 
@@ -10,4 +10,6 @@
     <string name="meizi">Meizi</string>
     <string name="Android">Android</string>
     <string name="iOS">iOS</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
