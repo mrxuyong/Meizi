@@ -1,5 +1,6 @@
 package com.spark.meizi;
 
+
 import android.app.Application;
 
 import io.realm.Realm;
@@ -17,5 +18,7 @@ public class App extends Application {
                 .schemaVersion(1)
                 .deleteRealmIfMigrationNeeded()
                 .build());
+        MeiziContex.getInstance().init(getApplicationContext());
     }
+
 }

@@ -9,7 +9,7 @@
     android:layout_gravity="center_vertical"
     card_view:cardCornerRadius="6dp">
 
-    <com.spark.meizi.ui.widget.RatioImageView
+    <com.spark.meizi.widget.RatioImageView
         android:id="@+id/riv_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
