@@ -12,21 +12,20 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.spark.meizi.R;
-import com.spark.meizi.blog.AndroidBlogDAO;
-import com.spark.meizi.meizi.MeiziDAO;
 import com.spark.meizi.blog.AndroidBlog;
+import com.spark.meizi.blog.AndroidBlogDAO;
 import com.spark.meizi.meizi.Meizi;
+import com.spark.meizi.meizi.MeiziDAO;
 import com.spark.meizi.net.api.GankApi;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 import io.realm.RealmObject;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Spark on 12/13/2015.
@@ -57,7 +56,6 @@ public class SparkRetrofit {
     public SparkRetrofit(Context context) {
         this.context = context;
         OkHttpClient client = new OkHttpClient();
-        client.setReadTimeout(12, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://gank.io/api/")

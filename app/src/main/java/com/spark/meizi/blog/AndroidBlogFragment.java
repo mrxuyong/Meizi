@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 
 import com.spark.meizi.R;
 import com.spark.meizi.base.BaseFragment;
+import com.spark.meizi.net.SparkRetrofit;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -25,9 +27,9 @@ public class AndroidBlogFragment extends BaseFragment implements SwipeRefreshLay
 
     private static int page = 2;
     public List<AndroidBlog> blogs;
-    @Bind(R.id.rv_android_blog)
+    @BindView(R.id.rv_android_blog)
     RecyclerView recyclerView;
-    @Bind(R.id.srl_android_blog)
+    @BindView(R.id.srl_android_blog)
     SwipeRefreshLayout swipeRefreshLayout;
     SparkRetrofit sparkRetrofit;
     private Realm realm;

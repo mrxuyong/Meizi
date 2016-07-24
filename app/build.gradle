@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 23
@@ -53,10 +55,14 @@ dependencies {
     compile rootProject.ext.androiddesign
     compile rootProject.ext.recyclerview
     compile rootProject.ext.realm
-    compile rootProject.ext.retrofitgson
-    compile rootProject.ext.glide
     compile rootProject.ext.retrofit
+    compile rootProject.ext.retrofitgson
+    compile rootProject.ext.rxJava
+    compile rootProject.ext.rxAndroid
+    compile rootProject.ext.rxAdapter
+    compile rootProject.ext.glide
     compile rootProject.ext.cardview
     compile rootProject.ext.butterknife
+    apt rootProject.ext.butterknifeCompiler
     compile 'com.umeng.analytics:analytics:latest.integration'
 }
