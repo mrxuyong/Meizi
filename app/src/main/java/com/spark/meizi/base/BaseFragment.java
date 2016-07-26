@@ -12,14 +12,12 @@ import android.view.ViewGroup;
  */
 public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implements IView, View.OnClickListener {
 
-    protected IViewLifeCircleHelper mILifeCircle;
     protected T mPresenter;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData();
-        doAfter();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,8 +25,6 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
         mInflater = mInflater.cloneInContext(getContext());
         View containerView = mInflater.inflate(getContentViewId(), container, false);
         doInitPresenter();
-        onBefore(savedInstanceState);
-        __internal(containerView);
         initSubViews(containerView);
         return containerView;
     }
@@ -36,20 +32,10 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
     private void doInitPresenter() {
         if (mPresenter == null)
             mPresenter = doGetPresenter();
-           }
+    }
 
     protected T doGetPresenter() {
         return null;
-    }
-
-    private void __internal(View view) {
-        if (null != mILifeCircle)
-            mILifeCircle.onCreate();
-    }
-
-    @Override
-    public void onBefore(Bundle savedInstanceState) {
-
     }
 
     @Override
@@ -73,41 +59,8 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
     }
 
     @Override
-    public void doAfter() {
-
-    }
-
-    @Override
     public void onClick(View view) {
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (null != mILifeCircle)
-            mILifeCircle.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (null != mILifeCircle)
-            mILifeCircle.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (null != mILifeCircle)
-            mILifeCircle.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (null != mILifeCircle)
-            mILifeCircle.onStop();
     }
 
     @Override
@@ -116,24 +69,6 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
         if (mPresenter != null) {
             mPresenter.detachViewRef();
         }
-
-        if (null != mILifeCircle)
-            mILifeCircle.onDestory();
     }
 
-    public void setmILifeCircle(IViewLifeCircleHelper mILifeCircle) {
-        this.mILifeCircle = mILifeCircle;
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && mPresenter != null) {
-            doLazyLoad();
-        }
-    }
-
-    public void doLazyLoad() {
-
-    }
 }

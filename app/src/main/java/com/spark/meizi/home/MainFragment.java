@@ -24,18 +24,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 
 public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
 
     private static int page = 2;
     public List<Meizi> meizis;
-    @Bind(R.id.rv_main)
+    @BindView(R.id.rv_main)
     RecyclerView mainRecyclerView;
-    @Bind(R.id.srl_main)
+    @BindView(R.id.srl_main)
     SwipeRefreshLayout swipeRefreshLayout;
     SparkRetrofit sparkRetrofit;
     private Realm realm;
@@ -109,7 +111,7 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private int loadDataFromDB() {
         RealmResults<Meizi> results = realm.where(Meizi.class)
-                .findAllSorted("publishedAt", false);
+                .findAllSorted("publishedAt", Sort.DESCENDING);
         meizis.clear();
         meizis.addAll(results);
         return meizis.size();
@@ -136,7 +138,8 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         // when lastInNetMzs is earlier than the first item in mzx, we think the mzs is too old
         // so return netMzs
         for (int i = 0; i < mzs.size(); i++) {
-            if (lastInNetMzs.getPublishedAt().equals(mzs.get(i).getPublishedAt()) && i != mzs.size() - 1) { //in case two lists are same
+            if (lastInNetMzs.getResults().get(i).getPublishedAt().equals(
+                    mzs.get(i).getResults().get(i).getPublishedAt()) && i != mzs.size() - 1) { //in case two lists are same
                 netMzs.addAll(mzs.subList(i + 1, mzs.size() - 1));
             }
         }

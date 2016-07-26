@@ -2,7 +2,7 @@ package com.spark.meizi.utils;
 
 
 
-public class NoDoubleClickUtil {
+public class DoubleClickUtil {
 
     private static final long DEFAULT = 500L;
     private static long lastClickTime;

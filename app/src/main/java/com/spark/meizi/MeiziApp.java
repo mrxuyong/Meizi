@@ -7,8 +7,10 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
- * Created by Spark on 12/13/2015.
+ * Created by SparkYuan on 12/13/2015.
+ * Github: github.com/SparkYuan
  */
+
 public class MeiziApp extends Application {
     @Override
     public void onCreate() {
@@ -18,7 +20,7 @@ public class MeiziApp extends Application {
                 .schemaVersion(1)
                 .deleteRealmIfMigrationNeeded()
                 .build());
-        MeiziContext.getInstance().init(getApplicationContext());
+        MeiziContext.getInstance().init(this);
     }
 
 }

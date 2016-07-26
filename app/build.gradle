@@ -10,8 +10,11 @@ android {
         applicationId "com.spark.meizi"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 14
-        versionName "1.4"
+        versionCode 15
+        versionName "1.5"
+        manifestPlaceholders = [
+                UMENG_APP_KEY : "56a0e38867e58ef0f0001dec"
+        ]
     }
     signingConfigs {
         release {

@@ -12,7 +12,7 @@ public class MeiziContext {
     private MeiziContext() {
     }
 
-    private static class SingletonHolder  {
+    private static class SingletonHolder {
         private static MeiziContext INSTANCE = new MeiziContext();
     }
 
@@ -23,6 +23,10 @@ public class MeiziContext {
     public MeiziContext init(Context context) {
         this.context = context;
         return this;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
 }

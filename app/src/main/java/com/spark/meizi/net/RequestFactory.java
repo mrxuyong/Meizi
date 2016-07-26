@@ -1,8 +1,12 @@
 package com.spark.meizi.net;
 
-import android.content.res.Resources;
 import android.text.TextUtils;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.spark.meizi.MeiziContext;
 import com.spark.meizi.R;
 
 import java.io.IOException;
@@ -10,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import io.realm.RealmObject;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -20,16 +25,13 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Spark on 7/24/2016 22:08.
+ * Created by SparkYuan on 7/24/2016 22:08.
+ * Github: github.com/SparkYuan
  */
 public class RequestFactory {
 
     public static String getBaseUrl() {
-
-        Resources resources = AppContext.getContext().getResources();
-        String baseUrl = resources.getString(R.string.base_url);
-
-        return baseUrl;
+        return MeiziContext.getInstance().getContext().getString(R.string.base_url);
     }
 
     public static <T> T createApi(final Class<T> clazz) {
@@ -59,10 +61,10 @@ public class RequestFactory {
      * @param clazz     API 类型
      * @param baseUrl   基础URL
      * @param headerMap Http头信息
-     * @param <T>
-     * @return
+     * @param <T>   Service
+     * @return Service
      */
-    public static <T> T createRetrofitService(final Class<T> clazz, String baseUrl, final Map<String, String> headerMap) {
+    public static <T> T createRetrofitService(final Class<T> clazz, String baseUrl, final Map<String, String> headerMap){
 
         OkHttpClient okClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -92,7 +94,7 @@ public class RequestFactory {
                 .baseUrl(baseUrl)
                 .client(okClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         return client.create(clazz);
     }
@@ -106,4 +108,19 @@ public class RequestFactory {
         }
         return builder.build();
     }
+
+    private static Gson gson = new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .setExclusionStrategies(new ExclusionStrategy() {   //把RealmObject排除在外,不然会报错。
+                @Override
+                public boolean shouldSkipField(FieldAttributes f) {
+                    return f.getDeclaringClass().equals(RealmObject.class);
+                }
+
+                @Override
+                public boolean shouldSkipClass(Class<?> clazz) {
+                    return false;
+                }
+            })
+            .create();
 }

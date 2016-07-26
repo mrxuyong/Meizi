@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spark.meizi.utils.NoDoubleClickUtil;
+import com.spark.meizi.utils.DoubleClickUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +117,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onClick(View v) {
-        if (NoDoubleClickUtil.isFastDoubleClick()) {
+        if (DoubleClickUtil.isFastDoubleClick()) {
             return;
         }
         if (clickListener != null) {

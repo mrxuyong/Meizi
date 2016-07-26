@@ -1,6 +1,6 @@
 package com.spark.meizi.meizi;
 
-import java.util.Date;
+import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -9,105 +9,126 @@ import io.realm.annotations.PrimaryKey;
  * Created by Spark on 12/10/2015.
  */
 public class Meizi extends RealmObject{
-    @PrimaryKey
-    private String _id;
-    private String url;
-    private Date publishedAt;
-    private Date createdAt;
-    private Date updatedAt;
-    private String who;
-    private String desc;
-    private String type;
-    private boolean used;
-    private int width;
-    private int height;
 
-    public String get_id() {
-        return _id;
+
+    /**
+     * error : false
+     * results : [{"_id":"5796b970421aa90d2fc94b4e","createdAt":"2016-07-26T09:14:24.76Z","desc":"今天两个妹子","publishedAt":"2016-07-26T10:30:11.357Z","source":"chrome","type":"福利","url":"http://ww3.sinaimg.cn/large/c85e4a5cjw1f671i8gt1rj20vy0vydsz.jpg","used":true,"who":"代码家"},{"_id":"5794df0e421aa90d39e70939","createdAt":"2016-07-24T23:30:22.399Z","desc":"7.25","publishedAt":"2016-07-25T11:43:57.769Z","source":"chrome","type":"福利","url":"http://ww2.sinaimg.cn/large/610dc034jw1f65f0oqodoj20qo0hntc9.jpg","used":true,"who":"代码家"},{"_id":"57918b5c421aa90d2fc94b35","createdAt":"2016-07-22T10:56:28.274Z","desc":"恐龙爪子萌妹子","publishedAt":"2016-07-22T11:04:44.305Z","source":"web","type":"福利","url":"http://ww2.sinaimg.cn/large/c85e4a5cgw1f62hzfvzwwj20hs0qogpo.jpg","used":true,"who":"代码家"},{"_id":"578f93c4421aa90de83c1bf4","createdAt":"2016-07-20T23:07:48.480Z","desc":"7.21","publishedAt":"2016-07-20T16:09:07.721Z","source":"chrome","type":"福利","url":"http://ww4.sinaimg.cn/large/610dc034jw1f60rw11f5mj20iy0sg0u2.jpg","used":true,"who":"daimajia"},{"_id":"578e3d3b421aa90df33fe7e8","createdAt":"2016-07-19T22:46:19.966Z","desc":"7.20","publishedAt":"2016-07-20T17:25:17.522Z","source":"chrome","type":"福利","url":"http://ww4.sinaimg.cn/large/610dc034jw1f5zlndsr0oj20go0ciq4h.jpg","used":true,"who":"代码家"}]
+     */
+
+    private boolean error;
+    /**
+     * _id : 5796b970421aa90d2fc94b4e
+     * createdAt : 2016-07-26T09:14:24.76Z
+     * desc : 今天两个妹子
+     * publishedAt : 2016-07-26T10:30:11.357Z
+     * source : chrome
+     * type : 福利
+     * url : http://ww3.sinaimg.cn/large/c85e4a5cjw1f671i8gt1rj20vy0vydsz.jpg
+     * used : true
+     * who : 代码家
+     */
+
+    private List<ResultsBean> results;
+
+    public boolean isError() {
+        return error;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setError(boolean error) {
+        this.error = error;
     }
 
-    public int getWidth() {
-        return width;
+    public List<ResultsBean> getResults() {
+        return results;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setResults(List<ResultsBean> results) {
+        this.results = results;
     }
 
-    public int getHeight() {
-        return height;
-    }
+    public static class ResultsBean {
+        @PrimaryKey
+        private String _id;
+        private String createdAt;
+        private String desc;
+        private String publishedAt;
+        private String source;
+        private String type;
+        private String url;
+        private boolean used;
+        private String who;
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
+        public String get_id() {
+            return _id;
+        }
 
-    public String getWho() {
-        return who;
-    }
+        public void set_id(String _id) {
+            this._id = _id;
+        }
 
-    public void setWho(String who) {
-        this.who = who;
-    }
+        public String getCreatedAt() {
+            return createdAt;
+        }
 
-    public String getType() {
-        return type;
-    }
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+        public String getDesc() {
+            return desc;
+        }
 
-    public boolean isUsed() {
-        return used;
-    }
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
 
-    public void setUsed(boolean used) {
-        this.used = used;
-    }
+        public String getPublishedAt() {
+            return publishedAt;
+        }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+        public void setPublishedAt(String publishedAt) {
+            this.publishedAt = publishedAt;
+        }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+        public String getSource() {
+            return source;
+        }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
+        public void setSource(String source) {
+            this.source = source;
+        }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+        public String getType() {
+            return type;
+        }
 
-    public Date getPublishedAt() {
-        return publishedAt;
-    }
+        public void setType(String type) {
+            this.type = type;
+        }
 
-    public void setPublishedAt(Date publishedAt) {
-        this.publishedAt = publishedAt;
-    }
+        public String getUrl() {
+            return url;
+        }
 
-    public String getDesc() {
-        return desc;
-    }
+        public void setUrl(String url) {
+            this.url = url;
+        }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+        public boolean isUsed() {
+            return used;
+        }
 
-    public String getUrl() {
-        return url;
-    }
+        public void setUsed(boolean used) {
+            this.used = used;
+        }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+        public String getWho() {
+            return who;
+        }
 
+        public void setWho(String who) {
+            this.who = who;
+        }
+    }
 }
