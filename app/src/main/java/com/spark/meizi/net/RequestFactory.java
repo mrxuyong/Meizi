@@ -1,6 +1,12 @@
 package com.spark.meizi.net;
 
+import android.content.res.Resources;
+import android.text.TextUtils;
+
+import com.spark.meizi.R;
+
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +23,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Spark on 7/24/2016 22:08.
  */
 public class RequestFactory {
+
+    public static String getBaseUrl() {
+
+        Resources resources = AppContext.getContext().getResources();
+        String baseUrl = resources.getString(R.string.base_url);
+
+        return baseUrl;
+    }
+
+    public static <T> T createApi(final Class<T> clazz) {
+        return createApi(clazz, getBaseUrl());
+    }
+
+    public static <T> T createApi(final Class<T> clazz, Map<String, String> headerMap) {
+        return createRetrofitService(clazz, getBaseUrl(), headerMap);
+    }
+
+    public static <T> T createApi(Class<T> clazz, String baseUrl) {
+        String token = "";
+        if (TextUtils.isEmpty(token)) {
+            return createApi(clazz, baseUrl, null);
+        } else {
+            Map<String, String> headerMap = new HashMap<>();
+//            headerMap.put("Token", token);
+            return createApi(clazz, baseUrl, headerMap);
+        }
+    }
+
+    public static <T> T createApi(Class<T> clazz, String baseUrl, Map<String, String> headerMap) {
+        return createRetrofitService(clazz, baseUrl, headerMap);
+    }
+
     /**
      * @param clazz     API 类型
      * @param baseUrl   基础URL
@@ -24,7 +62,7 @@ public class RequestFactory {
      * @param <T>
      * @return
      */
-    public static <T> T createRetrofitService(final Class clazz, String baseUrl, final Map<String, String> headerMap) {
+    public static <T> T createRetrofitService(final Class<T> clazz, String baseUrl, final Map<String, String> headerMap) {
 
         OkHttpClient okClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -41,18 +79,14 @@ public class RequestFactory {
                                     .headers(addHeaders(headerMap))
                                     .method(original.method(), original.body());
                         }
-
                         Request request = requestBuilder.build();
 
-                        Response response = chain.proceed(request);
-
-                        return response;
+                        return chain.proceed(request);
                     }
                 })
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
                 .build();
-
 
         Retrofit client = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -60,10 +94,8 @@ public class RequestFactory {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        T service = (T) client.create(clazz);
-        return service;
+        return client.create(clazz);
     }
-
 
     private static Headers addHeaders(Map<String, String> header) {
         Headers.Builder builder = new Headers.Builder();

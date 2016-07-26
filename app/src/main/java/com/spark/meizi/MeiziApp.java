@@ -9,7 +9,7 @@ import io.realm.RealmConfiguration;
 /**
  * Created by Spark on 12/13/2015.
  */
-public class App extends Application {
+public class MeiziApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,7 +18,7 @@ public class App extends Application {
                 .schemaVersion(1)
                 .deleteRealmIfMigrationNeeded()
                 .build());
-        MeiziContex.getInstance().init(getApplicationContext());
+        MeiziContext.getInstance().init(getApplicationContext());
     }
 
 }

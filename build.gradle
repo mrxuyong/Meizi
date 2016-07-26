@@ -34,10 +34,9 @@ ext {
     butterknifeCompiler = "com.jakewharton:butterknife-compiler:8.2.1"
     retrofit = "com.squareup.retrofit2:retrofit:2.1.0"
     retrofitgson = "com.squareup.retrofit2:converter-gson:2.0.0"
-    rxJava="io.reactivex:rxjava:1.1.8"
-    rxAndroid="io.reactivex:rxandroid:1.2.1"
-    rxAdapter="com.squareup.retrofit2:adapter-rxjava:2.0.0"
+    rxJava = "io.reactivex:rxjava:1.1.8"
+    rxAndroid = "io.reactivex:rxandroid:1.2.1"
+    rxAdapter = "com.squareup.retrofit2:adapter-rxjava:2.0.0"
     realm = "io.realm:realm-gradle-plugin:1.1.0"
     glide = "com.github.bumptech.glide:glide:3.7.0"
-
 }
