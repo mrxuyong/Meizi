@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Spark on 2016/7/10 23:20:19.
  */
@@ -18,6 +20,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         View containerView = getLayoutInflater().inflate(getContentViewId(), getViewGroupRoot());
         setContentView(containerView);
+        ButterKnife.bind(this);
         initPresenter();
         initData();
         initSubViews(containerView);

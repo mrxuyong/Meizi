@@ -10,12 +10,12 @@ import java.util.List;
  * Created by SparkYuan on 16/6/20.
  * Github: github.com/SparkYuan
  */
-public class BaseFragmentAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
+public class BaseFragmentPagerAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
 
     private List<T> fragments;
     private List<String> titles;
 
-    public BaseFragmentAdapter(FragmentManager fm) {
+    public BaseFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -47,4 +47,5 @@ public class BaseFragmentAdapter<T extends Fragment> extends FragmentStatePagerA
         else
             return "";
     }
+
 }

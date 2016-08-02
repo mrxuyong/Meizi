@@ -1,7 +1,7 @@
 package com.spark.meizi.net.api;
 
 import com.spark.meizi.blog.AndroidBlog;
-import com.spark.meizi.meizi.Meizi;
+import com.spark.meizi.entity.Meizi;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

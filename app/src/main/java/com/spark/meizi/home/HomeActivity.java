@@ -1,7 +1,5 @@
 package com.spark.meizi.home;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,20 +10,19 @@ import com.spark.meizi.R;
 import com.spark.meizi.about.AboutActivity;
 import com.spark.meizi.base.BaseActivity;
 import com.spark.meizi.base.BaseFragment;
-import com.spark.meizi.base.BaseFragmentAdapter;
+import com.spark.meizi.base.BaseFragmentPagerAdapter;
 import com.spark.meizi.utils.ActivityUtil;
 import com.umeng.update.UmengUpdateAgent;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity<MainPresenter> {
+public class HomeActivity extends BaseActivity<HomePresenter> implements IHome {
 
-    public static int NUM_PAGES = 2;
     @BindView(R.id.vp_main)
     ViewPager viewPager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    BaseFragmentPagerAdapter<BaseFragment> adapter;
 
     @Override
     public int getContentViewId() {
@@ -35,10 +32,9 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     public void initSubViews(View view) {
         super.initSubViews(view);
-        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        PagerAdapter pagerAdapter = new MainSlidePagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
+        adapter = new BaseFragmentPagerAdapter<>(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -46,11 +42,12 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         super.initData();
         UmengUpdateAgent.update(this);
         UmengUpdateAgent.setUpdateOnlyWifi(true);
+        mPresenter.initAdapterData(adapter);
     }
 
     @Override
-    protected MainPresenter getPresenter() {
-        return new MainPresenter();
+    protected HomePresenter getPresenter() {
+        return new HomePresenter(this);
     }
 
     @Override
@@ -67,12 +64,6 @@ public class MainActivity extends BaseActivity<MainPresenter> {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private class MainSlidePagerAdapter extends BaseFragmentAdapter<BaseFragment> {
-        public MainSlidePagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
     }
 }
 

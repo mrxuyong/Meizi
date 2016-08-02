@@ -1,30 +1,32 @@
 package com.spark.meizi.about;
 
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.spark.meizi.R;
 import com.spark.meizi.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AboutActivity extends BaseActivity {
 
-    @Bind(R.id.tb_about)
+    @BindView(R.id.tb_about)
     Toolbar tbAbout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+    public void initSubViews(View view) {
+        super.initSubViews(view);
         ButterKnife.bind(this);
         setSupportActionBar(tbAbout);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
 
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_about;
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.spark.meizi.R;
 import com.spark.meizi.blog.AndroidBlog;
 import com.spark.meizi.blog.AndroidBlogDAO;
-import com.spark.meizi.meizi.Meizi;
+import com.spark.meizi.entity.Meizi;
 import com.spark.meizi.meizi.MeiziDAO;
 import com.spark.meizi.net.api.GankApi;
 

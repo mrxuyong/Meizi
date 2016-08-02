@@ -13,8 +13,6 @@ public class BasePresenter<T> {
         this.mViewRef = new WeakReference<>(view);
     }
 
-    public BasePresenter(){}
-
     protected T getViewRef() {
         if (null != mViewRef)
             return mViewRef.get();

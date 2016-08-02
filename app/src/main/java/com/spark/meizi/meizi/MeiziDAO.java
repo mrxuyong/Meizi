@@ -2,6 +2,7 @@ package com.spark.meizi.meizi;
 
 import android.util.Log;
 
+import com.spark.meizi.entity.Meizi;
 import com.spark.meizi.utils.DateUtil;
 
 import java.util.List;

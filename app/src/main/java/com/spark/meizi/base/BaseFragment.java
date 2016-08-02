@@ -6,17 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 
 /**
- * Created by Spark on 2016/7/10 23:21:24.
+ * Created by Spark on 2016/7/10.
+ * Github: github/SparkYuan
  */
-public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implements IView, View.OnClickListener {
+public class BaseFragment<T extends BasePresenter> extends Fragment implements IView{
 
     protected T mPresenter;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this,view);
         initData();
     }
 
@@ -24,17 +28,17 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
         LayoutInflater mInflater = LayoutInflater.from(getContext());
         mInflater = mInflater.cloneInContext(getContext());
         View containerView = mInflater.inflate(getContentViewId(), container, false);
-        doInitPresenter();
+        initPresenter();
         initSubViews(containerView);
         return containerView;
     }
 
-    private void doInitPresenter() {
+    private void initPresenter() {
         if (mPresenter == null)
-            mPresenter = doGetPresenter();
+            mPresenter = getPresenter();
     }
 
-    protected T doGetPresenter() {
+    protected T getPresenter() {
         return null;
     }
 
@@ -55,11 +59,6 @@ public class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implem
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void onClick(View view) {
 
     }
 
