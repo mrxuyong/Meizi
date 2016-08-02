@@ -1,14 +1,11 @@
-package com.spark.meizi.meizi;
+package com.spark.meizi.entity;
 
 import java.util.List;
-
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Spark on 12/10/2015.
  */
-public class Meizi extends RealmObject{
+public class Meizi{
 
 
     /**
@@ -48,7 +45,6 @@ public class Meizi extends RealmObject{
     }
 
     public static class ResultsBean {
-        @PrimaryKey
         private String _id;
         private String createdAt;
         private String desc;

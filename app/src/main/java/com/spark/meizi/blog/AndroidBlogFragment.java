@@ -17,7 +17,6 @@ import com.spark.meizi.net.SparkRetrofit;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;

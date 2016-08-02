@@ -16,25 +16,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailActivity extends BaseActivity {
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager pager;
     private ArrayList<String> meiziUrls;
     private DetailPagerAdapter detailPagerAdapter;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Log.d(getClass().getName(), "onCreate invoked!");
-        super.onCreate(savedInstanceState);
-        supportStartPostponedEnterTransition();
-        setContentView(R.layout.activity_detail);
+    public void initSubViews(View view) {
+        super.initSubViews(view);
         ButterKnife.bind(this);
-
+        supportStartPostponedEnterTransition();
         meiziUrls = getIntent().getStringArrayListExtra("meiziUrls");
         int index = getIntent().getIntExtra("index", 0);
         log("index url " + index + ": " + meiziUrls.get(index));
@@ -49,6 +45,12 @@ public class DetailActivity extends BaseActivity {
                         detailPagerAdapter.getCurrent().getSharedElement());
             }
         });
+
+    }
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_detail;
     }
 
     @Override

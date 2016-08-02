@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.spark.meizi.R;
+import com.spark.meizi.entity.Meizi;
 import com.spark.meizi.widget.RatioImageView;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class MeiziRecyclerAdapter extends RecyclerView.Adapter<MeiziRecyclerAdapter.MeiziViewHolder> {
 
+    //TODO 继承BaseAdapter
     private Context context;
     private List<Meizi> meiziList;
     private OnMeiziClickListener onMeiziClickListener;

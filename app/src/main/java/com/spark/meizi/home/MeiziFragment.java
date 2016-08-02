@@ -13,17 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.spark.meizi.R;
-import com.spark.meizi.meizi.Meizi;
-import com.spark.meizi.net.SparkRetrofit;
+import com.spark.meizi.base.BaseFragment;
 import com.spark.meizi.meizi.DetailActivity;
+import com.spark.meizi.entity.Meizi;
 import com.spark.meizi.meizi.MeiziRecyclerAdapter;
 import com.spark.meizi.meizi.OnMeiziClickListener;
-import com.spark.meizi.base.BaseFragment;
+import com.spark.meizi.net.SparkRetrofit;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -31,7 +30,8 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 
-public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
+public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeizi,
+        SwipeRefreshLayout.OnRefreshListener, OnMeiziClickListener {
 
     private static int page = 2;
     public List<Meizi> meizis;
@@ -39,55 +39,36 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     RecyclerView mainRecyclerView;
     @BindView(R.id.srl_main)
     SwipeRefreshLayout swipeRefreshLayout;
+
     SparkRetrofit sparkRetrofit;
-    private Realm realm;
+
     private MeiziRecyclerAdapter meiziAdapter;
     //You can't get RealmObject's data in a different thread
     private boolean isFirst = true;
     private Bundle reenterState;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 
-
-    public MainFragment() {
+    public MeiziFragment() {
         // Required empty public constructor
     }
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static MeiziFragment newInstance() {
+        return new MeiziFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected MeiziPresenter getPresenter() {
+        return new MeiziPresenter(this);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        realm.close();
+    public int getContentViewId() {
+        return R.layout.fragment_meizi;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this,view);
-//        initToolbar();
-        meizis = new ArrayList<>();
-        sparkRetrofit = new SparkRetrofit(getContext());
-        initRealm();
-        loadDataFromDB();
-        initRecyclerView();
-        loadDataFromServer(LoadImageAsyncTask.GET_LATEST);
-        return view;
-    }
-
-    private void initRealm() {
-        realm = Realm.getDefaultInstance();
-    }
-
-
-    private void initRecyclerView() {
+    public void initSubViews(View view) {
+        super.initSubViews(view);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         meiziAdapter = new MeiziRecyclerAdapter(getContext(), meizis);
         meiziAdapter.setOnMeiziClickListener(this);
@@ -107,6 +88,16 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.getRealm().close();
+    }
+
+    private void initRecyclerView() {
+
     }
 
     private int loadDataFromDB() {
@@ -148,10 +139,10 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onMeiziClick(View itemView, int position) {
-        Intent intent = new Intent(getActivity(),DetailActivity.class);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
         ArrayList<String> meiziUrls = new ArrayList<>();
         for (Meizi meizi : meizis) {
-            meiziUrls.add(meizi.getUrl());
+//            meiziUrls.add(meizi.getUrl());
         }
         intent.putStringArrayListExtra("meiziUrls", meiziUrls);
         intent.putExtra("index", position);
@@ -199,7 +190,7 @@ public class MainFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
         @Override
         protected void onPostExecute(Integer result) {
-            if(needMerge){
+            if (needMerge) {
                 mergeList(meizis, temp);
                 needMerge = false;
             }
