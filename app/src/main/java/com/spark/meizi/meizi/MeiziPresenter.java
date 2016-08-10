@@ -1,8 +1,11 @@
 package com.spark.meizi.meizi;
 
 import com.spark.meizi.base.BasePresenter;
+import com.spark.meizi.base.FooterRecyclerAdapter;
 import com.spark.meizi.meizi.entity.Meizi;
 import com.spark.meizi.meizi.entity.MeiziRealmEntity;
+import com.spark.meizi.net.RequestFactory;
+import com.spark.meizi.net.api.GankApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +13,9 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by SparkYuan on 7/28/2016.
@@ -17,9 +23,13 @@ import io.realm.Sort;
  */
 public class MeiziPresenter extends BasePresenter<IMeizi> {
     private Realm realm;
+    private GankApi gankApi;
+    private final int COUNT = 10;
 
     public MeiziPresenter(IMeizi view) {
         super(view);
+        realm = Realm.getDefaultInstance();
+        gankApi = RequestFactory.createApi(GankApi.class);
     }
 
     public Realm getRealm() {
@@ -31,10 +41,24 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
     }
 
     public void requestMeizi(int page) {
+        getViewRef().getAdapter().addFooter();
+        gankApi.latest(COUNT, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Meizi>() {
+                    @Override
+                    public void call(Meizi meizi) {
+                        getViewRef().getAdapter().getWrapped().setData(meizi.getResults());
+                        getViewRef().getAdapter().getWrapped().notifyDataSetChanged();
+                        getViewRef().getAdapter().removeFooter();
+                        getViewRef().setRefresh(false);
+                    }
+                });
+
 
     }
 
-    private List<Meizi.ResultsBean> loadDataFromDB() {
+    public List<Meizi.ResultsBean> loadDataFromDB() {
         List<Meizi.ResultsBean> list = new ArrayList<>();
         RealmResults<MeiziRealmEntity> results = realm.where(MeiziRealmEntity.class)
                 .findAllSorted("publishedAt", Sort.DESCENDING);
@@ -48,5 +72,9 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
 }
 
 interface IMeizi {
+    FooterRecyclerAdapter getAdapter();
+
+    void setRefresh(boolean isRefresh);
+
 }
 

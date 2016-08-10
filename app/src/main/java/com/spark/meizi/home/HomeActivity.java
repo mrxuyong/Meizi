@@ -12,7 +12,6 @@ import com.spark.meizi.base.BaseActivity;
 import com.spark.meizi.base.BaseFragment;
 import com.spark.meizi.base.BaseFragmentPagerAdapter;
 import com.spark.meizi.utils.ActivityUtil;
-import com.umeng.update.UmengUpdateAgent;
 
 import butterknife.BindView;
 
@@ -40,8 +39,8 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements IHome {
     @Override
     public void initData() {
         super.initData();
-        UmengUpdateAgent.update(this);
-        UmengUpdateAgent.setUpdateOnlyWifi(true);
+//        UmengUpdateAgent.update(this);
+//        UmengUpdateAgent.setUpdateOnlyWifi(true);
         mPresenter.initAdapterData(adapter);
     }
 

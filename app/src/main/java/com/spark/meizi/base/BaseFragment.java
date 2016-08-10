@@ -13,21 +13,21 @@ import butterknife.ButterKnife;
  * Created by Spark on 2016/7/10.
  * Github: github/SparkYuan
  */
-public class BaseFragment<T extends BasePresenter> extends Fragment implements IView{
+public class BaseFragment<T extends BasePresenter> extends Fragment implements IView {
 
     protected T mPresenter;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
         initData();
     }
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LayoutInflater mInflater = LayoutInflater.from(getContext());
-        mInflater = mInflater.cloneInContext(getContext());
-        View containerView = mInflater.inflate(getContentViewId(), container, false);
+        super.onCreateView(inflater, container, savedInstanceState);
+        View containerView = inflater.inflate(getContentViewId(), container, false);
+        ButterKnife.bind(this,containerView);
         initPresenter();
         initSubViews(containerView);
         return containerView;

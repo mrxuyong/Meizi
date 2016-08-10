@@ -2,8 +2,6 @@ package com.spark.meizi.net;
 
 import android.text.TextUtils;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.spark.meizi.MeiziContext;
@@ -14,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import io.realm.RealmObject;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -111,16 +108,5 @@ public class RequestFactory {
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            .setExclusionStrategies(new ExclusionStrategy() {   //把RealmObject排除在外,不然会报错。
-                @Override
-                public boolean shouldSkipField(FieldAttributes f) {
-                    return f.getDeclaringClass().equals(RealmObject.class);
-                }
-
-                @Override
-                public boolean shouldSkipClass(Class<?> clazz) {
-                    return false;
-                }
-            })
             .create();
 }

@@ -31,6 +31,7 @@ public class MeiziAdapter extends BaseRecyclerAdapter<Meizi.ResultsBean, MeiziVi
 
 class MeiziViewHolder extends BaseRecyclerAdapter.BaseViewHolder<Meizi.ResultsBean> {
 
+    private static final String TAG = "MeiziViewHolder";
     @BindView(R.id.iv_item)
     ImageView itemImageView;
 
@@ -40,6 +41,8 @@ class MeiziViewHolder extends BaseRecyclerAdapter.BaseViewHolder<Meizi.ResultsBe
 
     @Override
     protected void bindData(Meizi.ResultsBean data) {
+//        Log.d(TAG, "bindData: url " + data.getUrl());
+//        titleTextView.setText(data.getDesc());
         ImageLoader.loadImage(data.getUrl(), itemImageView, itemView.getContext());
     }
 

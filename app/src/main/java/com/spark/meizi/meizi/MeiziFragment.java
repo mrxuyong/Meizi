@@ -10,6 +10,9 @@ import com.spark.meizi.base.BaseFragment;
 import com.spark.meizi.base.BaseRecyclerView;
 import com.spark.meizi.base.FooterRecyclerAdapter;
 import com.spark.meizi.base.listener.BaseRecyclerOnScrollListener;
+import com.spark.meizi.meizi.entity.Meizi;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -17,12 +20,12 @@ import butterknife.BindView;
 public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeizi,
         SwipeRefreshLayout.OnRefreshListener {
 
-    @BindView(R.id.rv_main)
+    @BindView(R.id.rv_meizi)
     BaseRecyclerView recyclerView;
-    @BindView(R.id.srl_main)
+    @BindView(R.id.srl_meizi)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    private FooterRecyclerAdapter meiziAdapter;
+    private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziViewHolder> meiziAdapter;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 
     BaseRecyclerOnScrollListener scrollListener;
@@ -48,7 +51,7 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     public void initSubViews(View view) {
         super.initSubViews(view);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(BaseRecyclerView.LIN_NUM, StaggeredGridLayoutManager.VERTICAL);
-        meiziAdapter = new FooterRecyclerAdapter(new MeiziAdapter());
+        meiziAdapter = new FooterRecyclerAdapter<>(new MeiziAdapter());
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(meiziAdapter);
         scrollListener = new BaseRecyclerOnScrollListener(staggeredGridLayoutManager) {
@@ -62,14 +65,34 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     }
 
     @Override
+    public void initData() {
+        super.initData();
+        List<Meizi.ResultsBean> list = mPresenter.loadDataFromDB();
+        if (!list.isEmpty()) {
+            meiziAdapter.getWrapped().setData(list);
+            meiziAdapter.getWrapped().notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void onDestroy() {
-        super.onDestroy();
         mPresenter.getRealm().close();
+        super.onDestroy();
     }
 
     @Override
     public void onRefresh() {
         scrollListener.clearPage();
         scrollListener.onLoadMore(1);
+    }
+
+    @Override
+    public FooterRecyclerAdapter getAdapter() {
+        return meiziAdapter;
+    }
+
+    @Override
+    public void setRefresh(boolean isRefresh) {
+        swipeRefreshLayout.setRefreshing(isRefresh);
     }
 }

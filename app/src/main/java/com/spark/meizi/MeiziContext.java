@@ -3,7 +3,8 @@ package com.spark.meizi;
 import android.content.Context;
 
 /**
- * Created by Spark on 6/9/2016 22:55.
+ * Created by SparkYuan on 6/9/2016 22:55.
+ * Github: github.com/SparkYuan
  */
 public class MeiziContext {
 

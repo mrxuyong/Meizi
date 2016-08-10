@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 
 /**
- * Created by Spark on 2016/7/10 23:20:19.
+ * Created by SparkYuan on 2016/7/10 23:20:19.
+ * Github: github.com/SparkYuan
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements
         IView, View.OnClickListener {
@@ -22,8 +23,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(containerView);
         ButterKnife.bind(this);
         initPresenter();
-        initData();
         initSubViews(containerView);
+        initData();
     }
 
     private void initPresenter() {
