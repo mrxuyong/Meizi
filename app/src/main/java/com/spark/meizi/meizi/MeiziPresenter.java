@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 public class MeiziPresenter extends BasePresenter<IMeizi> {
     private Realm realm;
     private GankApi gankApi;
-    private final int COUNT = 10;
+    private final int COUNT = 20;
 
     public MeiziPresenter(IMeizi view) {
         super(view);
@@ -54,8 +54,6 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
                         getViewRef().setRefresh(false);
                     }
                 });
-
-
     }
 
     public List<Meizi.ResultsBean> loadDataFromDB() {

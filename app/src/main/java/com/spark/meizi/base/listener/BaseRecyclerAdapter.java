@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spark.meizi.R;
+
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -20,7 +22,8 @@ public abstract class BaseRecyclerAdapter<D, VH extends BaseRecyclerAdapter.Base
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meizi_rv_item, parent,
+                false);
         return createViewHolder(view);
     }
 

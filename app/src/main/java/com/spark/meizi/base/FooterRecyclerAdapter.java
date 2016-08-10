@@ -1,7 +1,6 @@
 package com.spark.meizi.base;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -88,9 +87,6 @@ public class FooterRecyclerAdapter<D,VH extends BaseRecyclerAdapter.BaseViewHold
         ProgressBar view = new ProgressBar(parent.getContext());
         view.setIndeterminate(true);
         parent.addView(view);
-        StaggeredGridLayoutManager.LayoutParams layoutParams =
-                (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
-        layoutParams.setFullSpan(true);
         return new SimpleViewHolder(view);
     }
 

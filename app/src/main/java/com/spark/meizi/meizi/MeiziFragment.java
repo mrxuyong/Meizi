@@ -26,7 +26,7 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     SwipeRefreshLayout swipeRefreshLayout;
 
     private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziViewHolder> meiziAdapter;
-    private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
+    private StaggeredGridLayoutManager linearLayoutManager = null;
 
     BaseRecyclerOnScrollListener scrollListener;
 
@@ -50,11 +50,12 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     @Override
     public void initSubViews(View view) {
         super.initSubViews(view);
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(BaseRecyclerView.LIN_NUM, StaggeredGridLayoutManager.VERTICAL);
+        linearLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//        linearLayoutManager = new LinearLayoutManager(getContext());
         meiziAdapter = new FooterRecyclerAdapter<>(new MeiziAdapter());
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(meiziAdapter);
-        scrollListener = new BaseRecyclerOnScrollListener(staggeredGridLayoutManager) {
+        scrollListener = new BaseRecyclerOnScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int currentPage) {
                 mPresenter.requestMeizi(currentPage);
@@ -71,6 +72,8 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
         if (!list.isEmpty()) {
             meiziAdapter.getWrapped().setData(list);
             meiziAdapter.getWrapped().notifyDataSetChanged();
+        } else {
+            mPresenter.requestMeizi(1);
         }
     }
 
