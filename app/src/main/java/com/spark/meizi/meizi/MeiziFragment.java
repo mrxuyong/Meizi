@@ -26,7 +26,7 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     @BindView(R.id.srl_meizi)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziViewHolder> meiziAdapter;
+    private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziAdapter.MeiziViewHolder> meiziAdapter;
     private LinearLayoutManager linearLayoutManager = null;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 

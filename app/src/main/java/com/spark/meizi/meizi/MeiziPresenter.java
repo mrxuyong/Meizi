@@ -25,6 +25,8 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
     private Realm realm;
     private GankApi gankApi;
     private final int COUNT = 10;
+    public static final String MEIZIS = "meizis";
+    public static final String INDEX = "index";
 
     public MeiziPresenter(IMeizi view) {
         super(view);

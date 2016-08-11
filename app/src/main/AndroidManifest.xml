@@ -31,13 +31,14 @@
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme" />
 
-        <!--<service-->
-            <!--android:name="com.umeng.update.net.DownloadingService"-->
-            <!--android:process=":DownloadingService" />-->
+        <!-- <service -->
+        <!-- android:name="com.umeng.update.net.DownloadingService" -->
+        <!-- android:process=":DownloadingService" /> -->
 
-        <!--<activity-->
-            <!--android:name="com.umeng.update.UpdateDialogActivity"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+
+        <!-- <activity -->
+        <!-- android:name="com.umeng.update.UpdateDialogActivity" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -45,6 +46,8 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <activity android:name=".meizi.detail.DetailActivity"></activity>
     </application>
 
 </manifest>

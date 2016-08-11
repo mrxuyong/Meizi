@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class BaseFragmentPagerAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
 
-    private List<T> fragments;
-    private List<String> titles;
+    protected List<T> fragments;
+    protected List<String> titles;
 
     public BaseFragmentPagerAdapter(FragmentManager fm) {
         super(fm);

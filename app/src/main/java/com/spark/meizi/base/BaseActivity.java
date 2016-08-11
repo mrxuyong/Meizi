@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
  * Github: github.com/SparkYuan
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements
-        IView, View.OnClickListener {
+        IView{
 
     protected T mPresenter;
 
@@ -59,8 +59,4 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             mPresenter.detachViewRef();
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 }
