@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 public class MeiziPresenter extends BasePresenter<IMeizi> {
     private Realm realm;
     private GankApi gankApi;
-    private final int COUNT = 20;
+    private final int COUNT = 10;
 
     public MeiziPresenter(IMeizi view) {
         super(view);
@@ -48,8 +48,16 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
                 .subscribe(new Action1<Meizi>() {
                     @Override
                     public void call(Meizi meizi) {
-                        getViewRef().getAdapter().getWrapped().setData(meizi.getResults());
-                        getViewRef().getAdapter().getWrapped().notifyDataSetChanged();
+                        List<Meizi.ResultsBean> list = getViewRef().getAdapter().getWrapped().getData();
+                        if (list != null) {
+                            list.addAll(meizi.getResults());
+                        } else {
+                            list = meizi.getResults();
+                        }
+                        getViewRef().getAdapter().getWrapped().setData(list);
+                        getViewRef().getAdapter().getWrapped().notifyItemRangeInserted(
+                                list.size() - COUNT - 1,
+                                list.size() - 1);
                         getViewRef().getAdapter().removeFooter();
                         getViewRef().setRefresh(false);
                     }

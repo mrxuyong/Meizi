@@ -2,6 +2,7 @@ package com.spark.meizi.meizi;
 
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
@@ -26,7 +27,8 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     SwipeRefreshLayout swipeRefreshLayout;
 
     private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziViewHolder> meiziAdapter;
-    private StaggeredGridLayoutManager linearLayoutManager = null;
+    private LinearLayoutManager linearLayoutManager = null;
+    private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 
     BaseRecyclerOnScrollListener scrollListener;
 
@@ -50,18 +52,22 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     @Override
     public void initSubViews(View view) {
         super.initSubViews(view);
-        linearLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        //TODO SGML item move when scrolling
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 //        linearLayoutManager = new LinearLayoutManager(getContext());
         meiziAdapter = new FooterRecyclerAdapter<>(new MeiziAdapter());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+//        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(meiziAdapter);
-        scrollListener = new BaseRecyclerOnScrollListener(linearLayoutManager) {
+        scrollListener = new BaseRecyclerOnScrollListener(staggeredGridLayoutManager) {
+            //        scrollListener = new BaseRecyclerOnScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int currentPage) {
                 mPresenter.requestMeizi(currentPage);
             }
         };
-        recyclerView.setmOnScrollListener(scrollListener);
+        recyclerView.addOnScrollListener(scrollListener);
         swipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -85,6 +91,11 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
 
     @Override
     public void onRefresh() {
+        List list = meiziAdapter.getWrapped().getData();
+        if (list != null) {
+            list.clear();
+            meiziAdapter.notifyDataSetChanged();
+        }
         scrollListener.clearPage();
         scrollListener.onLoadMore(1);
     }

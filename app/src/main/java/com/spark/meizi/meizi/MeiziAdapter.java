@@ -47,8 +47,6 @@ class MeiziViewHolder extends BaseRecyclerAdapter.BaseViewHolder<Meizi.ResultsBe
 
     @Override
     protected void bindData(Meizi.ResultsBean data) {
-//        Log.d(TAG, "bindData: url " + data.getUrl());
-//        titleTextView.setText(data.getDesc());
         Observable.just(data)
                 .map(new Func1<Meizi.ResultsBean, Bitmap>() {
                     @Override

@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.spark.meizi.base.FooterRecyclerAdapter;
 import com.spark.meizi.base.BaseRecyclerView;
 
 
@@ -13,11 +12,12 @@ public abstract class BaseRecyclerOnScrollListener extends RecyclerView.OnScroll
 
     private int previousTotal = 0;
     private boolean loading = true;
+    private int visibleThreshold = 1;
     int visibleItemCount, totalItemCount;
-    int[] staggerLastCompletelyVisibleItemPosition = new int[BaseRecyclerView.LIN_NUM];
-    int lastCompletelyVisibleItemPosition = -1;
+    int[] staggerLastVisibleItemPosition = new int[BaseRecyclerView.LIN_NUM];
+    int lastVisibleItemPosition = -1;
 
-    private int currentPage = 1;
+    private int currentPage = 2;
 
     private RecyclerView.LayoutManager layoutManager;
 
@@ -28,27 +28,27 @@ public abstract class BaseRecyclerOnScrollListener extends RecyclerView.OnScroll
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
-        visibleItemCount = recyclerView.getChildCount();
         totalItemCount = layoutManager.getItemCount();
+        visibleItemCount = recyclerView.getChildCount();
         if (layoutManager instanceof StaggeredGridLayoutManager) {
-            ((StaggeredGridLayoutManager) layoutManager).findLastCompletelyVisibleItemPositions(staggerLastCompletelyVisibleItemPosition);
-            lastCompletelyVisibleItemPosition = staggerLastCompletelyVisibleItemPosition[BaseRecyclerView.LIN_NUM - 1];
+            ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(staggerLastVisibleItemPosition);
+            lastVisibleItemPosition = findMax(staggerLastVisibleItemPosition);
         } else if (layoutManager instanceof LinearLayoutManager) {
-            lastCompletelyVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+            lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
         }
 
         if (loading) {
-            if (totalItemCount > previousTotal) {
+            if (totalItemCount - 1 > previousTotal) { //加载完数据而不是footer
                 loading = false;
                 previousTotal = totalItemCount;
             }
         }
-        if (!loading && (visibleItemCount > 0)
-                && (lastCompletelyVisibleItemPosition >= totalItemCount - 1)) {
+        if (!loading && visibleItemCount > 0
+                && lastVisibleItemPosition
+                >= (totalItemCount - visibleThreshold)) {
             currentPage++;
-            ((FooterRecyclerAdapter) recyclerView.getAdapter()).addFooter();
-            onLoadMore(currentPage);
             loading = true;
+            onLoadMore(currentPage);
         }
     }
 
@@ -56,7 +56,7 @@ public abstract class BaseRecyclerOnScrollListener extends RecyclerView.OnScroll
 
     public void clearPage() {
         currentPage = 1;
-        loading = false;
+        loading = true;
         previousTotal = 0;
     }
 
@@ -66,4 +66,13 @@ public abstract class BaseRecyclerOnScrollListener extends RecyclerView.OnScroll
         previousTotal = 0;
     }
 
+    private int findMax(int[] array) {
+        int max = 0;
+        for (int i : array) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
 }
