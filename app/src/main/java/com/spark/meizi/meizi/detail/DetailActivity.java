@@ -14,6 +14,7 @@ import com.spark.meizi.base.BaseActivity;
 import com.spark.meizi.base.BaseFragmentPagerAdapter;
 import com.spark.meizi.meizi.MeiziPresenter;
 import com.spark.meizi.meizi.entity.Meizi;
+import com.spark.meizi.widget.PhotoViewPager;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 
 public class DetailActivity extends BaseActivity<DetailPresenter> implements IDetail {
     @BindView(R.id.vp_detail)
-    ViewPager detailViewpager;
+    PhotoViewPager detailViewpager;
     BaseFragmentPagerAdapter adapter;
 
     @Override

@@ -136,9 +136,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/multidex-instrumentation/1.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.getkeepsafe.relinker/relinker/1.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.github.chrisbanes/PhotoView/1.3.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/io.realm/realm-android-library/1.1.0/jars" />
@@ -175,16 +176,15 @@
     <orderEntry type="library" exported="" name="builder-test-api-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.1" level="project" />
-    <orderEntry type="library" exported="" name="antlr4-annotations-4.5" level="project" />
     <orderEntry type="library" exported="" name="baseLibrary-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="android-apt-1.8" level="project" />
-    <orderEntry type="library" exported="" name="transform-api-2.0.0-deprecated-use-gradle-api" level="project" />
     <orderEntry type="library" exported="" name="antlr4-runtime-4.5" level="project" />
+    <orderEntry type="library" exported="" name="android-apt-1.8" level="project" />
+    <orderEntry type="library" exported="" name="antlr4-annotations-4.5" level="project" />
+    <orderEntry type="library" exported="" name="transform-api-2.0.0-deprecated-use-gradle-api" level="project" />
     <orderEntry type="library" exported="" name="org.abego.treelayout.core-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="ecj-4.4.2" level="project" />
-    <orderEntry type="library" exported="" name="proguard-gradle-5.2.1" level="project" />
     <orderEntry type="library" exported="" name="jill-api-0.10.0" level="project" />
+    <orderEntry type="library" exported="" name="proguard-gradle-5.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="org.jacoco.core-0.7.4.201502262128" level="project" />
@@ -198,21 +198,24 @@
     <orderEntry type="library" exported="" name="bcpkix-jdk15on-1.48" level="project" />
     <orderEntry type="library" exported="" name="kotlin-runtime-1.0.1-2" level="project" />
     <orderEntry type="library" exported="" name="converter-gson-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-24.1.1" level="project" />
     <orderEntry type="library" exported="" name="lint-checks-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="realm-transformer-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="antlr-3.5.2" level="project" />
     <orderEntry type="library" exported="" name="butterknife-8.2.1" level="project" />
-    <orderEntry type="library" exported="" name="javawriter-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="okhttp-3.3.0" level="project" />
+    <orderEntry type="library" exported="" name="javawriter-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="compilerCommon-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="dvlib-25.1.0" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-annotations-8.2.1" level="project" />
     <orderEntry type="library" exported="" name="common-25.1.0" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-annotations-8.2.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.6.1" level="project" />
     <orderEntry type="library" exported="" name="jack-api-0.10.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-24.1.1" level="project" />
     <orderEntry type="library" exported="" name="lint-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="httpcore-4.1" level="project" />
     <orderEntry type="library" exported="" name="gradle-api-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="PhotoView-1.3.0" level="project" />
     <orderEntry type="library" exported="" name="builder-model-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="realm-android-library-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="realm-annotations-1.1.0" level="project" />
@@ -223,15 +226,14 @@
     <orderEntry type="library" exported="" name="glide-3.7.0" level="project" />
     <orderEntry type="library" exported="" name="realm-gradle-plugin-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="lombok-ast-0.2.3" level="project" />
-    <orderEntry type="library" exported="" name="annotations-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.1.8" level="project" />
+    <orderEntry type="library" exported="" name="annotations-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="manifest-merger-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="sdklib-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="bcprov-jdk15on-1.48" level="project" />
     <orderEntry type="library" exported="" name="retrofit-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="commons-compress-1.8.1" level="project" />
     <orderEntry type="library" exported="" name="guava-17.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-24.0.0" level="project" />
+    <orderEntry type="library" exported="" name="commons-compress-1.8.1" level="project" />
     <orderEntry type="library" exported="" name="rxandroid-1.2.1" level="project" />
     <orderEntry type="library" exported="" name="design-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="kxml2-2.3.0" level="project" />
@@ -241,8 +243,8 @@
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" exported="" name="ST4-4.0.8" level="project" />
     <orderEntry type="library" exported="" name="asm-analysis-5.0.3" level="project" />
-    <orderEntry type="library" exported="" name="proguard-base-5.2.1" level="project" />
     <orderEntry type="library" exported="" name="layoutlib-api-25.1.0" level="project" />
+    <orderEntry type="library" exported="" name="proguard-base-5.2.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="gradle-core-2.1.0" level="project" />
   </component>

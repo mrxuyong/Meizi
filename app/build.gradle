@@ -88,6 +88,6 @@ dependencies {
     compile rootProject.ext.butterknife
     compile rootProject.ext.multidex
     apt rootProject.ext.butterknifeCompiler
+    compile rootProject.ext.photoview
 //    compile 'com.umeng.analytics:analytics:latest.integration'
-    compile 'com.android.support:support-v4:23.4.0'
 }
