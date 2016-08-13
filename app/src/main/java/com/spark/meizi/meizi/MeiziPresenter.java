@@ -62,6 +62,12 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
                                 list.size() - 1);
                         getViewRef().getAdapter().removeFooter();
                         getViewRef().setRefresh(false);
+
+                        realm.beginTransaction();
+                        for (Meizi.ResultsBean bean : meizi.getResults()) {
+                            realm.copyToRealmOrUpdate(convert2Realm(bean));
+                        }
+                        realm.commitTransaction();
                     }
                 });
     }
@@ -76,6 +82,16 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
             list.add(temp);
         }
         return list;
+    }
+
+    private MeiziRealmEntity convert2Realm(Meizi.ResultsBean resultsBean) {
+        MeiziRealmEntity realmEntity = new MeiziRealmEntity();
+        realmEntity.set_id(resultsBean.get_id());
+        realmEntity.setCreatedAt(resultsBean.getCreatedAt());
+        realmEntity.setDesc(resultsBean.getDesc());
+        realmEntity.setPublishedAt(resultsBean.getPublishedAt());
+        realmEntity.setUrl(resultsBean.getUrl());
+        return realmEntity;
     }
 }
 

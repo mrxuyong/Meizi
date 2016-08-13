@@ -55,13 +55,10 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
 
         //TODO SGML item move when scrolling
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-//        linearLayoutManager = new LinearLayoutManager(getContext());
         meiziAdapter = new FooterRecyclerAdapter<>(new MeiziAdapter());
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-//        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(meiziAdapter);
         scrollListener = new BaseRecyclerOnScrollListener(staggeredGridLayoutManager) {
-            //        scrollListener = new BaseRecyclerOnScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int currentPage) {
                 mPresenter.requestMeizi(currentPage);
