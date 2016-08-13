@@ -1,11 +1,16 @@
 package com.spark.meizi.meizi;
 
+import android.graphics.Bitmap;
+
+import com.spark.meizi.MeiziContext;
 import com.spark.meizi.base.BasePresenter;
 import com.spark.meizi.base.FooterRecyclerAdapter;
+import com.spark.meizi.base.listener.BaseRecyclerAdapter;
 import com.spark.meizi.meizi.entity.Meizi;
 import com.spark.meizi.meizi.entity.MeiziRealmEntity;
 import com.spark.meizi.net.RequestFactory;
 import com.spark.meizi.net.api.GankApi;
+import com.spark.meizi.utils.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +18,10 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -50,25 +57,52 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
                 .subscribe(new Action1<Meizi>() {
                     @Override
                     public void call(Meizi meizi) {
-                        List<Meizi.ResultsBean> list = getViewRef().getAdapter().getWrapped().getData();
-                        if (list != null) {
-                            list.addAll(meizi.getResults());
-                        } else {
-                            list = meizi.getResults();
-                        }
-                        getViewRef().getAdapter().getWrapped().setData(list);
-                        getViewRef().getAdapter().getWrapped().notifyItemRangeInserted(
-                                list.size() - COUNT - 1,
-                                list.size() - 1);
-                        getViewRef().getAdapter().removeFooter();
-                        getViewRef().setRefresh(false);
 
-                        realm.beginTransaction();
-                        for (Meizi.ResultsBean bean : meizi.getResults()) {
-                            realm.copyToRealmOrUpdate(convert2Realm(bean));
-                        }
-                        realm.commitTransaction();
+                        // 加载图片缓存，并保存尺寸数据到meizi
+                        Observable.just(meizi)
+                                .map(new Func1<Meizi, Meizi>() {
+                                    @Override
+                                    public Meizi call(Meizi meizi) {
+                                        for (final Meizi.ResultsBean bean : meizi.getResults()) {
+                                            Bitmap bitmap = ImageLoader.loadImageBitmap(bean.getUrl(),
+                                                    MeiziContext.getInstance().getContext());
+                                            if (bitmap != null) {
+                                                bean.setWidth(bitmap.getWidth());
+                                                bean.setHeight(bitmap.getHeight());
+                                            }
+                                        }
+                                        return meizi;
+                                    }
+                                })
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Action1<Meizi>() {
+                                    @Override
+                                    public void call(Meizi meizi) {
+                                        //只能在创建的线程使用
+                                        for (final Meizi.ResultsBean bean : meizi.getResults()) {
+                                            realm.beginTransaction();
+                                            realm.copyToRealmOrUpdate(convert2Realm(bean));
+                                            realm.commitTransaction();
+                                        }
+
+                                        BaseRecyclerAdapter adapter = getViewRef().getAdapter().getWrapped();
+                                        List<Meizi.ResultsBean> list = adapter.getData();
+                                        if (list != null) {
+                                            list.addAll(meizi.getResults());
+                                        } else {
+                                            list = meizi.getResults();
+                                        }
+                                        adapter.setData(list);
+                                        getViewRef().getAdapter().getWrapped().notifyItemRangeInserted(
+                                                list.size() - COUNT - 1,
+                                                list.size() - 1);
+                                        getViewRef().getAdapter().removeFooter();
+                                        getViewRef().setRefresh(false);
+                                    }
+                                });
                     }
+
                 });
     }
 
@@ -79,9 +113,16 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
         for (MeiziRealmEntity entity : results) {
             Meizi.ResultsBean temp = new Meizi.ResultsBean();
             temp.setUrl(entity.getUrl());
+            temp.setHeight(entity.getHeight());
+            temp.setWidth(entity.getWidth());
+            temp.setPublishedAt(entity.getPublishedAt());
             list.add(temp);
         }
-        return list;
+        if (list.size() >= 30) {
+            return list.subList(0, 29);
+        } else {
+            return list;
+        }
     }
 
     private MeiziRealmEntity convert2Realm(Meizi.ResultsBean resultsBean) {
@@ -91,6 +132,8 @@ public class MeiziPresenter extends BasePresenter<IMeizi> {
         realmEntity.setDesc(resultsBean.getDesc());
         realmEntity.setPublishedAt(resultsBean.getPublishedAt());
         realmEntity.setUrl(resultsBean.getUrl());
+        realmEntity.setWidth(resultsBean.getWidth());
+        realmEntity.setHeight(resultsBean.getHeight());
         return realmEntity;
     }
 }

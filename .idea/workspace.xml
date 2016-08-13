@@ -23,11 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16bbf730-c710-4ca2-b784-cc1f644aec3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_24_1_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/Meizi.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/Meizi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java" />
     </list>
     <ignored path="Meizi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,26 +59,16 @@
     <favorites_list name="Meizi" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MeiziPresenter.java" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MeiziPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6059226">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-              <folding>
-                <element signature="e#1432#2575#0" expanded="true" />
-                <element signature="e#2574#2575#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseRecyclerOnScrollListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
+              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+              <folding>
+                <element signature="e#1651#4591#0" expanded="true" />
+                <element signature="e#4590#4591#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,9 +77,42 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+              <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ActivityUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.08">
+              <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MeiziAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meizi_rv_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/meizi_rv_item.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -2106,7 +2132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/home/HomePresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/home/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/home/IMeizi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/home/MeiziPresenter.java" />
@@ -2131,7 +2156,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ImageLoader.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/item_background.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/meizi_rv_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_meizi_detail.xml" />
@@ -2143,7 +2167,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/BaseFragmentPagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/detail/DetailAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/detail/DetailPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/widget/PhotoViewPager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" />
@@ -2154,8 +2177,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/blog/AndroidBlog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/blog/AndroidBlogEntity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/Meizi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java" />
       </list>
     </option>
@@ -2191,6 +2217,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Meizi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2208,119 +2248,11 @@
               <option name="myItemId" value="Meizi" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MeiziPresenter.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="meizi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2409,22 +2341,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Meizi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2433,7 +2349,7 @@
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../submitbtnview" />
-    <property name="SearchEverywhereHistoryKey" value="detaia&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/detail/DetailActivity.java&#10;meizi&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;meizivie&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;meiziad&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;foot&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java&#10;meiziview&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;basead&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java&#10;base&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java&#10;foota&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java&#10;meizvi&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/build/generated/source/apt/wandoujia/debug/com/spark/meizi/meizi/MeiziViewHolder_ViewBinding.java&#10;meiziv&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/build/generated/source/apt/wandoujia/debug/com/spark/meizi/meizi/MeiziViewHolder_ViewBinding.java&#10;meizipr&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java&#10;item&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/res/layout/meizi_rv_item.xml&#10;meizivi&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;viewh&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;adapter&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;meiziviewho&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;meizip&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java&#10;ap&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziApp.java&#10;app&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziApp.java&#10;string&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/res/values-zh/strings.xml&#10;meizicon&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziContext.java&#10;strings.x&#9;FILE&#9;file://F:/ComputerScience/AndroidStudio/Projects/GitHub/Meizi/app/src/main/res/values/strings.xml" />
+    <property name="SearchEverywhereHistoryKey" value="meizir&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java&#10;realm&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java&#10;meizia&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;meizi&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java&#10;meiziad&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;detaia&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/detail/DetailActivity.java&#10;meizivie&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;foot&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java&#10;meiziview&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;basead&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java&#10;base&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java&#10;foota&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java&#10;meizvi&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/build/generated/source/apt/wandoujia/debug/com/spark/meizi/meizi/MeiziViewHolder_ViewBinding.java&#10;meiziv&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/build/generated/source/apt/wandoujia/debug/com/spark/meizi/meizi/MeiziViewHolder_ViewBinding.java&#10;meizipr&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java&#10;item&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/res/layout/meizi_rv_item.xml&#10;meizivi&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;viewh&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;adapter&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java&#10;meiziviewho&#9;PSI&#9;JAVA://com.spark.meizi.meizi.MeiziViewHolder&#10;meizip&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java&#10;ap&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziApp.java&#10;app&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziApp.java&#10;string&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/res/values-zh/strings.xml&#10;meizicon&#9;FILE&#9;file://D:/Datum/ComputerScience/Android Studio/Meizi/app/src/main/java/com/spark/meizi/MeiziContext.java&#10;strings.x&#9;FILE&#9;file://F:/ComputerScience/AndroidStudio/Projects/GitHub/Meizi/app/src/main/res/values/strings.xml" />
     <property name="device.picker.selection" value="c368e2ca" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="195" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
@@ -2798,7 +2714,13 @@
       <option name="project" value="LOCAL" />
       <updated>1470979464736</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="meizi write to realm">
+      <created>1471070381525</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1471070381525</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2820,7 +2742,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5028653" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44150418" sideWeight="0.49713466" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26462397" sideWeight="0.49713466" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.45487106" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1908078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2833,7 +2755,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34958217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972144" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2899,14 +2821,29 @@
     <MESSAGE value="妹子Fragment完成" />
     <MESSAGE value="妹子Fragment上拉加载完成" />
     <MESSAGE value="add photoview" />
-    <option name="LAST_COMMIT_MESSAGE" value="add photoview" />
+    <MESSAGE value="meizi write to realm" />
+    <option name="LAST_COMMIT_MESSAGE" value="meizi write to realm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java</url>
+          <line>136</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="48" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -3033,17 +2970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66027397">
           <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-          <folding>
-            <element signature="e#2102#2103#0" expanded="false" />
-            <element signature="e#2138#2139#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ImageLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20948617">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -3061,27 +2987,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/meizi_rv_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16293278">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../Android/SDK/extras/android/m2repository/com/android/support/recyclerview-v7/23.3.0/recyclerview-v7-23.3.0-sources.jar!/android/support/v7/widget/RecyclerView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3325062">
           <caret line="933" column="0" selection-start-line="933" selection-start-column="0" selection-end-line="933" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0289855">
-          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -3130,14 +3039,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3087886">
-          <caret line="90" column="62" selection-start-line="90" selection-start-column="62" selection-end-line="90" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.285714">
@@ -3157,20 +3058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6199525">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ActivityUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2280703">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/BaseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6625917">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -3220,14 +3107,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31540343">
-          <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.222222">
@@ -3255,19 +3134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61904764">
           <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/detail/DetailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2982456">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3282,54 +3148,115 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/Meizi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0648148">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state vertical-scroll-proportion="1.093394">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/wandoujia/debug/io/realm/MeiziRealmEntityRealmProxy.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/detail/DetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3583815">
-          <caret line="580" column="0" selection-start-line="580" selection-start-column="0" selection-end-line="580" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3324397">
+          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/BaseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7767653">
+          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/FooterRecyclerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6011236">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="e#883#884#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3988764">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/meizi_rv_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ImageLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7619048">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/Meizi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8696742">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/entity/MeiziRealmEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.88584477">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="-0.39130434">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+          <folding>
+            <element signature="e#726#727#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/base/listener/BaseRecyclerOnScrollListener.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="e#1651#4591#0" expanded="true" />
+            <element signature="e#4590#4591#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+          <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/meizi/MeiziPresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spark/meizi/utils/ActivityUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6059226">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding>
-            <element signature="e#1432#2575#0" expanded="true" />
-            <element signature="e#2574#2575#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.08">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

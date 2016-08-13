@@ -18,6 +18,24 @@ public class MeiziRealmEntity extends RealmObject {
     private String url;
     private boolean used;
     private String who;
+    private int width;
+    private int height;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 
     public String get_id() {
         return _id;

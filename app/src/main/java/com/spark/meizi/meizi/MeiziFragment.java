@@ -2,7 +2,6 @@ package com.spark.meizi.meizi;
 
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
@@ -27,7 +26,6 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     SwipeRefreshLayout swipeRefreshLayout;
 
     private FooterRecyclerAdapter<Meizi.ResultsBean, MeiziAdapter.MeiziViewHolder> meiziAdapter;
-    private LinearLayoutManager linearLayoutManager = null;
     private StaggeredGridLayoutManager staggeredGridLayoutManager = null;
 
     BaseRecyclerOnScrollListener scrollListener;
@@ -52,8 +50,6 @@ public class MeiziFragment extends BaseFragment<MeiziPresenter> implements IMeiz
     @Override
     public void initSubViews(View view) {
         super.initSubViews(view);
-
-        //TODO SGML item move when scrolling
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         meiziAdapter = new FooterRecyclerAdapter<>(new MeiziAdapter());
         recyclerView.setLayoutManager(staggeredGridLayoutManager);

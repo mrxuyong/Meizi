@@ -29,7 +29,6 @@ public abstract class BaseRecyclerAdapter<D, VH extends BaseRecyclerAdapter.Base
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-
         holder.bindData(data.get(position));
     }
 
