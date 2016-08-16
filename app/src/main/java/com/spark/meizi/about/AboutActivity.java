@@ -8,7 +8,6 @@ import com.spark.meizi.R;
 import com.spark.meizi.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AboutActivity extends BaseActivity {
 
@@ -18,7 +17,6 @@ public class AboutActivity extends BaseActivity {
     @Override
     public void initSubViews(View view) {
         super.initSubViews(view);
-        ButterKnife.bind(this);
         setSupportActionBar(tbAbout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

@@ -35,7 +35,12 @@ public class ActivityUtil {
     }
 
     public static void startActivity(Activity activity, Class targetActivity, Bundle bundle) {
-        startActivity(activity, targetActivity, bundle);
+        Intent intent = new Intent();
+        intent.setClass(activity, targetActivity);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        activity.startActivity(intent);
     }
 
     public static void startActivity(Activity activity, Class targetActivity, Map<String, String> map, Bundle bundle) {

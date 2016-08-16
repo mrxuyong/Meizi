@@ -23,10 +23,10 @@ public class HomePresenter extends BasePresenter<IHome> {
     public void initAdapterData(BaseFragmentPagerAdapter<BaseFragment> adapter) {
         List<String> titles = new ArrayList<>();
         titles.add(MeiziContext.getInstance().getContext().getString(R.string.meizi));
-        titles.add(MeiziContext.getInstance().getContext().getString(R.string.Android));
+//        titles.add(MeiziContext.getInstance().getContext().getString(R.string.Android));
         List<BaseFragment> fragments = new ArrayList<>();
         fragments.add(new MeiziFragment());
-        fragments.add(new MeiziFragment());
+//        fragments.add(new MeiziFragment());
         adapter.setData(titles, fragments);
     }
 }

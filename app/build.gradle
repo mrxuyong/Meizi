@@ -88,6 +88,8 @@ dependencies {
     compile rootProject.ext.butterknife
     compile rootProject.ext.multidex
     apt rootProject.ext.butterknifeCompiler
-    compile rootProject.ext.photoview
-//    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile (rootProject.ext.photoview) {
+        exclude module: 'support-v4'
+    }
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
