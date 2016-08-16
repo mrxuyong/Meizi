@@ -1,15 +1,17 @@
 <resources>
     <string name="app_name">One Girl One Day</string>
     <string name="action_settings">About</string>
-    <string name="version">V 1.4</string>
+    <string name="version">V 1.5</string>
     <string name="introduction">每天更新一张精选妹纸图片</string>
-
-
     <string name="title_activity_about">About</string>
     <string name="introduction_detail">每天更新一张精选妹纸图片,使用的是代码家的API http://gank.io \n此项目开源，源码请戳下面的链接\nhttps://github.com/SparkYuan/Meizi \n本项目会持续更新，遇到任何问题欢迎与作者联系 ^_^</string>
     <string name="meizi">Meizi</string>
     <string name="Android">Android</string>
     <string name="iOS">iOS</string>
+    <string name="base_url">http://gank.io/api/</string>
+    <string name="title_activity_meizi_detail">MeiziDetailActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
