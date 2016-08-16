@@ -1,23 +1,4 @@
 # Meizi
-V 1.4
-
-添加了Android技术博文
-
-修复部分bug
-
-![home](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/home.png)
-
-![blog_list](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog_list.png)
-
-![blog](https://raw.githubusercontent.com/SparkYuan/Meizi/master/pic/blog.png)
-
-V 1.3
-
-更新dependencies
-
-修复部分bug
-
-V 1.2
 
 刚开始学习Android的时候，主要就是学习了一些Activity的生命周期，各种View和Layout的使用，SQLite等零散的知识点，这些东西市面上任何一本Android的入门书籍都会覆盖，但是学习完这些之后就有些迷茫了，不知道下一步该学一些什么？如果你也正好处于这个状态不妨看看这个开源项目。
 
@@ -44,14 +25,29 @@ V 1.2
 
 ##为什么说这是一个特别适合新手练习的小项目？
 
-- 服务器API接口功能丰富且无访问次数限制
 - 包含了常见的网络通信，数据缓存等功能
+- 一个Retrofit +  RxJava + Realm的示例
 - 包含了常见的Gradle用法
-- 多语言适配
 - 自定义了一个ImageView
-- 使用了流行的Realm，Retrofit，Glide，Butterknife等开源项目，方便新手学习他们的使用
+- 多语言适配
 - 遵循Material Design规则
 - ......
+
+
+V 1.5
+
+项目重构：
+- 采用MVP模式，用到的开源框架Retrofit +  RxJava + Realm
+- 写了若干Base基类
+- 修复上下滑动时StaggeredGridLayoutManager里的item不规则运动问题
+- 实现上拉加载，下拉刷新功能
+
+
+V 1.3
+
+更新dependencies
+
+修复部分bug
  
 
 ##用到的开源技术
