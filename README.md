@@ -8,7 +8,22 @@
 
 每天更新一张[@代码家](https://github.com/daimajia)精选妹纸图片，所以叫每日一妹纸，咳咳，不要污，这是一个很绅士的项目（一脸绅士(๑•̀ㅂ•́) ✧）
 
-第一版目前已完成，本项目会持续更新，遇到任何问题欢迎与我联系^_^
+## 更新日志
+
+V 1.5
+
+项目重构：
+- 采用MVP模式，用到的开源框架Retrofit +  RxJava + Realm
+- 写了若干Base基类
+- 修复上下滑动时StaggeredGridLayoutManager里的item不规则运动问题
+- 实现上拉加载，下拉刷新功能
+
+V 1.3
+
+更新dependencies
+
+修复部分bug
+
 ##部分示例
 
 ![示例](https://github.com/SparkYuan/Meizi/raw/master/pic/meizi.gif)
@@ -34,25 +49,10 @@
 - ......
 
 
-V 1.5
-
-项目重构：
-- 采用MVP模式，用到的开源框架Retrofit +  RxJava + Realm
-- 写了若干Base基类
-- 修复上下滑动时StaggeredGridLayoutManager里的item不规则运动问题
-- 实现上拉加载，下拉刷新功能
-
-
-V 1.3
-
-更新dependencies
-
-修复部分bug
- 
-
 ##用到的开源技术
 - Butterknife
 - Realm
+- RxJava
 - Retrofit
 - Glide
 - ......
