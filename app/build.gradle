@@ -77,7 +77,13 @@ dependencies {
     compile rootProject.ext.supportV4
     compile rootProject.ext.androiddesign
     compile rootProject.ext.recyclerview
-    compile rootProject.ext.realm
+    compile (rootProject.ext.realm){
+       exclude group: 'org.ow2.asm', module: 'asm'
+        exclude group: 'org.ow2.asm', module: 'asm-commons'
+        exclude group: 'org.ow2.asm', module: 'asm-tree'
+        exclude group: 'org.ow2.asm', module: 'asm-analysis'
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-runtime'
+    }
     compile rootProject.ext.retrofit
     compile rootProject.ext.retrofitgson
     compile rootProject.ext.rxJava
